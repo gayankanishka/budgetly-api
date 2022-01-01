@@ -1,3 +1,5 @@
+using Budgetly.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +19,23 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         IConfiguration configuration)
     {
+        var databaseOptions = configuration.GetSection(DatabaseOptions.Database)
+            .Get<DatabaseOptions>();
+
+        if (databaseOptions.UseInMemoryDatabase)
+        {
+            services.AddDbContextPool<ApplicationDbContext>(_ =>
+                _.UseInMemoryDatabase("BudgetlyDb"));
+        }
+        else
+        {
+            services.AddDbContextPool<ApplicationDbContext>(_ =>
+                _.UseNpgsql(
+                    databaseOptions.ConnectionString,
+                    a => 
+                        a.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+        }
+
         return services;
     }
 }
