@@ -35,7 +35,7 @@ public static class DependencyInjection
                     a => 
                         a.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
-
+        
         return services;
     }
 }

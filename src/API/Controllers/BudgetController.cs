@@ -15,10 +15,33 @@ namespace Budgetly.API.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
             return Ok();
         }
         
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
+        {
+            return Ok();
+        }
+        
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            return Ok();
+        }
+        
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            return NoContent();
+        }
     }
 }

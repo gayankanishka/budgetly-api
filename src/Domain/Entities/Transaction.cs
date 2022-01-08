@@ -13,7 +13,7 @@ public class Transaction : AuditableEntity
     public DateTimeOffset DateTime { get; set; }
     public string? Note { get; set; }
     public int CategoryId { get; set; }
-    public TransactionCategory Category { get; set; } // TODO: GK | can a transaction have more than one category?
+    public TransactionCategory Category { get; set; }
     public bool IsRecurring { get; set; }
     public string UserId { get; set; }
 }
