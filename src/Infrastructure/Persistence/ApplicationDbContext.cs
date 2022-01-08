@@ -1,4 +1,5 @@
 using Budgetly.Domain.Entities;
+using Budgetly.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Infrastructure.Persistence;
@@ -12,6 +13,8 @@ public class ApplicationDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new TransactionCategoryConfiguration());
+
     }
 
     public DbSet<Budget> Budgets { get; set; } = default!;
