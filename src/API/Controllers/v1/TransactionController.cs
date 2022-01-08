@@ -1,14 +1,16 @@
-using Budgetly.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Budgetly.API.Controllers
+namespace Budgetly.API.Controllers.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
     public class TransactionController : ControllerBase
     {
         private readonly IMediator _mediator;
+        
+        // TODO: GW | Required filters
+        // search by name, date filter with start and end, by recurring state
 
         public TransactionController(IMediator mediator)
         {
@@ -26,27 +28,7 @@ namespace Budgetly.API.Controllers
         {
             return Ok();
         }
-        
-        [HttpGet("category/{id:int}/transactions")]
-        public async Task<IActionResult> GetTransactionsByCategoryIdAsync([FromRoute] int id,
-            CancellationToken cancellationToken)
-        {
-            return Ok();
-        }
-        
-        [HttpGet("recurring")]
-        public async Task<IActionResult> GetRecurringTransactionsAsync(CancellationToken cancellationToken)
-        {
-            return Ok();
-        }
-        
-        [HttpGet("type/{type}/transactions")]
-        public async Task<IActionResult> GetTransactionsByTypeAsync([FromRoute] TransactionTypes type,
-            CancellationToken cancellationToken)
-        {
-            return Ok();
-        }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
         {

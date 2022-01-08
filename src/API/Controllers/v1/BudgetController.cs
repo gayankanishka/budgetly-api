@@ -1,13 +1,16 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Budgetly.API.Controllers
+namespace Budgetly.API.Controllers.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
     public class BudgetController : ControllerBase
     {
         private readonly IMediator _mediator;
+        
+        // TODO: GW | Required filters
+        // search by name, date filter with start and end, by recurring state
         
         public BudgetController(IMediator mediator)
         {
