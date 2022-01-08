@@ -1,4 +1,6 @@
+using Budgetly.Application.Common.Interfaces;
 using Budgetly.Infrastructure.Persistence;
+using Budgetly.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +37,10 @@ public static class DependencyInjection
                     a => 
                         a.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
-        
+
+        services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
+        services.AddScoped<ITransactionRepository, TransactionRepository>();
+
         return services;
     }
 }
