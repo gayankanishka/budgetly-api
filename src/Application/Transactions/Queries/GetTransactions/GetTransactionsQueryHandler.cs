@@ -1,10 +1,8 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Responses;
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Transactions.Queries.GetTransactions;
 
@@ -22,20 +20,11 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
-        int skipAmount = (request.PageNumber - 1) * request.PageSize;
-
-        int totalRecords = await _repository.GetAll()
-            .CountAsync(cancellationToken);
+        int totalResults = await _repository.GetResultsCountAsync(cancellationToken);
         
-        var transactions= await _repository.GetAll()
-            .Skip(skipAmount)
-            .Take(request.PageSize)
-            .AsNoTracking()
-            .OrderByDescending(x => x.DateTime)
-            .Select(x => _mapper.Map<TransactionDto>(x))
-            .ToListAsync(cancellationToken);
+        var transactions= await _repository.GetTransactionsAsync(request, cancellationToken);
+        var transactionsDto = _mapper.Map<IEnumerable<TransactionDto>>(transactions);
         
-        return new PagedResponse<TransactionDto>(transactions, request.PageNumber, request.PageSize,
-            totalRecords);
+        return new PagedResponse<TransactionDto>(transactionsDto, request.PageNumber, request.PageSize, totalResults);
     }
 }
