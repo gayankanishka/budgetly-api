@@ -15,6 +15,8 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new TransactionCategoryConfiguration());
         modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+        modelBuilder.ApplyConfiguration(new BudgetItemConfiguration());
+        modelBuilder.ApplyConfiguration(new BudgetConfiguration());
     }
 
     public DbSet<Budget> Budgets { get; set; } = default!;

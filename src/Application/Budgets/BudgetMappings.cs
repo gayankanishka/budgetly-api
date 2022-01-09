@@ -9,5 +9,6 @@ public class BudgetMappings : Profile
     public BudgetMappings()
     {
         CreateMap<Budget, BudgetDto>();
+        CreateMap<BudgetItem, BudgetItemDto>();
     }
 }
