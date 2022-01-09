@@ -4,6 +4,7 @@ using Budgetly.Application.TransactionCategories.Commands.DeleteTransactionCateg
 using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategories;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategoryById;
+using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,12 +25,10 @@ namespace Budgetly.API.Controllers.v1
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<IEnumerable<TransactionCategoryDto>>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<PagedResponse<TransactionCategoryDto>>> GetAllAsync(
+            [FromQuery] GetTransactionCategoriesQuery query, CancellationToken cancellationToken)
         {
-            var transactionCategories = 
-                await _mediator.Send(new GetTransactionCategoriesQuery(), cancellationToken);
-            
-            return Ok(transactionCategories);
+            return await _mediator.Send(query, cancellationToken);
         }
         
         [HttpGet]
