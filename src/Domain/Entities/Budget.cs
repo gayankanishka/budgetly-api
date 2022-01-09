@@ -10,6 +10,6 @@ public class Budget : AuditableEntity
     public double BudgeLimit { get; set; }
     public DateTimeOffset StartDate { get; set; }
     public DateTimeOffset EndDate { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public ICollection<BudgetItem> BudgetItems { get; set; }
 }

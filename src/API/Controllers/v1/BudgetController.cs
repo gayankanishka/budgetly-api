@@ -1,3 +1,5 @@
+using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,12 @@ namespace Budgetly.API.Controllers.v1
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<IEnumerable<BudgetDto>>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return Ok();
+            var budgets = await _mediator.Send(new GetBudgetsQuery(), cancellationToken);
+            return Ok(budgets);
         }
         
         [HttpGet("{id:int}")]
