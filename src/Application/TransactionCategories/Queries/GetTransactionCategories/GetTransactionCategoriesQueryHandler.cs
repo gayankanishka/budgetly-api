@@ -22,6 +22,7 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
         CancellationToken cancellationToken)
     {
         return await _repository.GetAll()
+            .AsNoTracking()
             .OrderBy(x => x.Name)
             .Select(x => _mapper.Map<TransactionCategoryDto>(x))
             .ToListAsync(cancellationToken);
