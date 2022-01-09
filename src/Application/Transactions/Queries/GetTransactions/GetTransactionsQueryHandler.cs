@@ -20,7 +20,7 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
-        int totalResults = await _repository.GetResultsCountAsync(cancellationToken);
+        int totalResults = await _repository.GetResultsCountAsync(request, cancellationToken);
         
         var transactions= await _repository.GetTransactionsAsync(request, cancellationToken);
         var transactionsDto = _mapper.Map<IEnumerable<TransactionDto>>(transactions);

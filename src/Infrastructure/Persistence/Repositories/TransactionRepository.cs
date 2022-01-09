@@ -16,14 +16,24 @@ internal class TransactionRepository : GenericRepository<Transaction>, ITransact
         CancellationToken cancellationToken)
     {
         IQueryable<Transaction> transactions = GetAll()
-            .Include(x => x.Category)
-            .Skip((query.PageNumber - 1) * query.PageSize)
+            .Include(x => x.Category);
+
+        FilterData(ref transactions, query.Name, query.StartDate, query.EndDate, query.Recurring);
+        
+        transactions = transactions.Skip((query.PageNumber - 1) * query.PageSize)
             .Take(query.PageSize)
             .OrderByDescending(x => x.DateTime);
         
+        return await transactions.ToListAsync(cancellationToken);
+    }
+
+    public async Task<int> GetResultsCountAsync(GetTransactionsQuery query, CancellationToken cancellationToken)
+    {
+        IQueryable<Transaction> transactions = GetAll();
+        
         FilterData(ref transactions, query.Name, query.StartDate, query.EndDate, query.Recurring);
         
-        return await transactions.ToListAsync(cancellationToken);
+        return await transactions.CountAsync(cancellationToken);
     }
 
     private void FilterData(ref IQueryable<Transaction> transactions, string? name, DateTimeOffset? startDate,

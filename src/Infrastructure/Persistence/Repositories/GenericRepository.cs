@@ -24,12 +24,6 @@ internal class GenericRepository<T> : IGenericRepository<T> where T : class
             .FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
     }
 
-    public Task<int> GetResultsCountAsync(CancellationToken cancellationToken)
-    {
-        return GetAll()
-            .CountAsync(cancellationToken);
-    }
-
     public Task<T> FindAsync(Expression<Func<T, bool>> query, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();

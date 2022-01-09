@@ -6,4 +6,5 @@ namespace Budgetly.Application.Common.Interfaces;
 public interface ITransactionRepository : IGenericRepository<Transaction>
 {
     Task<IEnumerable<Transaction>> GetTransactionsAsync(GetTransactionsQuery query, CancellationToken cancellationToken);
+    public Task<int> GetResultsCountAsync(GetTransactionsQuery query, CancellationToken cancellationToken);
 }

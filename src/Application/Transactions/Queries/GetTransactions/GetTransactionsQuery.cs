@@ -1,6 +1,5 @@
 using Budgetly.Application.Parameters;
 using Budgetly.Application.Responses;
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using MediatR;
 
