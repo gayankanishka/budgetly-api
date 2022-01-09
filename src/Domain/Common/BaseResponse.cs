@@ -2,19 +2,21 @@ namespace Budgetly.Domain.Common;
 
 public class BaseResponse<T> where T : class
 {
-    public BaseResponse(IEnumerable<T> data)
+    public BaseResponse(IEnumerable<T> data, string message = null)
     {
+        Succeeded = true;
+        Message = message;
         Data = data;
-        Success = true;
     }
 
-    public BaseResponse(string error)
+    public BaseResponse(string message)
     {
-        Error = error;
-        Success = false;
+        Succeeded = false;
+        Message = message;
     }
     
-    public bool Success { get; set; }
+    public bool Succeeded { get; set; }
+    public string? Message { get; set; }
+    public  List<string>? Errors { get; set; }
     public IEnumerable<T>? Data { get; private set; }
-    public string? Error { get; set; }
 }
