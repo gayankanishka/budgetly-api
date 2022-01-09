@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new TransactionCategoryConfiguration());
-
+        modelBuilder.ApplyConfiguration(new TransactionConfiguration());
     }
 
     public DbSet<Budget> Budgets { get; set; } = default!;

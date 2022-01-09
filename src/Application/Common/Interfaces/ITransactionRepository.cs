@@ -1,4 +1,4 @@
-using System.Transactions;
+using Budgetly.Domain.Entities;
 
 namespace Budgetly.Application.Common.Interfaces;
 

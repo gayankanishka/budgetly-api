@@ -1,5 +1,5 @@
-using System.Transactions;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Domain.Entities;
 
 namespace Budgetly.Infrastructure.Persistence.Repositories;
 
