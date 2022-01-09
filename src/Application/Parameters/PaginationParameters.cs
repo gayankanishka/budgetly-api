@@ -1,6 +1,6 @@
-namespace Budgetly.Domain.Common;
+namespace Budgetly.Application.Parameters;
 
-public class PaginationQuery
+public class PaginationParameters
 {
     const int MaxPageSize = 200;
     private int _pageSize = 10;

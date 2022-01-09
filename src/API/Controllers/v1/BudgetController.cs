@@ -1,4 +1,5 @@
 using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Application.Responses;
 using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using MediatR;

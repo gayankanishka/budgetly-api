@@ -1,15 +1,15 @@
-namespace Budgetly.Domain.Common;
+namespace Budgetly.Application.Responses;
 
-public class BaseResponse<T> where T : class
+public class Response<T> where T : class
 {
-    public BaseResponse(IEnumerable<T> data, string message = null)
+    public Response(IEnumerable<T> data, string message = null)
     {
         Succeeded = true;
         Message = message;
         Data = data;
     }
 
-    public BaseResponse(string message)
+    public Response(string message)
     {
         Succeeded = false;
         Message = message;

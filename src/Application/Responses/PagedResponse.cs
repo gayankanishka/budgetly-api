@@ -1,6 +1,6 @@
-namespace Budgetly.Domain.Common;
+namespace Budgetly.Application.Responses;
 
-public class PagedResponse<T> : BaseResponse<T> where T : class
+public class PagedResponse<T> : Response<T> where T : class
 {
     public PagedResponse(IEnumerable<T> data, int pageNumber, int pageSize, int totalResults) : base(data)
     {

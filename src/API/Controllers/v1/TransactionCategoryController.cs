@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using Budgetly.Application.Responses;
 using Budgetly.Application.TransactionCategories.Commands.CreateTransactionCategory;
 using Budgetly.Application.TransactionCategories.Commands.DeleteTransactionCategory;
 using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
