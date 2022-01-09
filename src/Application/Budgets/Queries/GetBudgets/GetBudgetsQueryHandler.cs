@@ -1,12 +1,13 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
-public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, IEnumerable<BudgetDto>>
+public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, PagedResponse<BudgetDto>>
 {
     private readonly IBudgetRepository _repository;
     private readonly IMapper _mapper;
@@ -17,14 +18,24 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, IEnumerab
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<BudgetDto>> Handle(GetBudgetsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResponse<BudgetDto>> Handle(GetBudgetsQuery request, CancellationToken cancellationToken)
     {
-        return await _repository.GetAll()
+        int skipAmount = (request.PageNumber - 1) * request.PageSize;
+
+        int totalRecords = await _repository.GetAll()
+            .CountAsync(cancellationToken);
+        
+        var budgets = await _repository.GetAll()
             .Include(x => x.BudgetItems)
             .ThenInclude(x => x.TransactionCategory)
+            .Skip(skipAmount)
+            .Take(request.PageSize)
             .AsNoTracking()
             .OrderByDescending(x => x.EndDate)
             .Select(x => _mapper.Map<BudgetDto>(x))
             .ToListAsync(cancellationToken);
+        
+        return new PagedResponse<BudgetDto>(budgets, request.PageNumber, request.PageSize,
+            totalRecords);
     }
 }
