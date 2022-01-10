@@ -2,6 +2,7 @@ using System.Net.Mime;
 using Budgetly.Application.Transactions.Commands.CreateTransaction;
 using Budgetly.Application.Transactions.Commands.DeleteTransaction;
 using Budgetly.Application.Transactions.Commands.UpdateTransaction;
+using Budgetly.Application.Transactions.Queries.GetTransactionById;
 using Budgetly.Application.Transactions.Queries.GetTransactions;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Responses;
@@ -31,9 +32,13 @@ namespace Budgetly.API.Controllers.v1
         }
         
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetByIdAsync([FromRoute] int id, CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<TransactionDto>> GetByIdAsync([FromRoute] GetTransactionByIdQuery query,
+            CancellationToken cancellationToken)
         {
-            return Ok();
+            return await _mediator.Send(query, cancellationToken);
         }
 
         [HttpPost]

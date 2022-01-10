@@ -80,7 +80,7 @@ namespace Budgetly.API.Controllers.v1
             }
 
             var transactionCategory =
-                await _mediator.Send(new GetTransactionCategoryByIdQuery(id), cancellationToken);
+                await _mediator.Send(new GetTransactionCategoryByIdQuery { Id = id }, cancellationToken);
 
             if (transactionCategory is null)
             {
