@@ -1,5 +1,5 @@
+using System.Net.Mime;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Responses;
 using MediatR;
@@ -12,9 +12,6 @@ namespace Budgetly.API.Controllers.v1
     public class BudgetController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
-        // TODO: GW | Required filters
-        // search by name, date filter with start and end, by recurring state
         
         public BudgetController(IMediator mediator)
         {
@@ -30,25 +27,41 @@ namespace Budgetly.API.Controllers.v1
            return await _mediator.Send(query, cancellationToken);
         }
         
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetByIdAsync([FromRoute] int id, CancellationToken cancellationToken)
+        [HttpGet]
+        [Route("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<BudgetDto>> GetByIdAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
             return Ok();
         }
 
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
         {
             return Ok();
         }
         
         [HttpPut("{id:int}")]
+        [Route("{id:int}")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
             return Ok();
         }
         
         [HttpDelete("{id:int}")]
+        [Route("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
             return NoContent();

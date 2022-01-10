@@ -31,21 +31,15 @@ namespace Budgetly.API.Controllers.v1
             return await _mediator.Send(query, cancellationToken);
         }
         
-        [HttpGet("{id:int}")]
+        [HttpGet]
+        [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<TransactionCategoryDto>> GetByIdAsync([FromRoute] GetTransactionCategoryByIdQuery query,
+        public async Task<ActionResult<TransactionCategoryDto>> GetByIdAsync([FromRoute] int id,
             CancellationToken cancellationToken)
         {
-            var transactionCategory = await _mediator.Send(query, cancellationToken);
-
-            if (transactionCategory is null)
-            {
-                return NotFound();
-            }
-
-            return transactionCategory;
+            return await _mediator.Send(new GetTransactionCategoryByIdQuery(id), cancellationToken);
         }
 
         [HttpPost]
@@ -56,48 +50,34 @@ namespace Budgetly.API.Controllers.v1
         public async Task<ActionResult<TransactionCategoryDto>> CreateAsync([FromBody] CreatTransactionCategoryCommand command, 
             CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            
-            var transactionCategory = await _mediator.Send(command, cancellationToken);
-            return Created(string.Empty, transactionCategory);
+            return await _mediator.Send(command, cancellationToken);
         }
         
-        [HttpPut("{id:int}")]
+        [HttpPut]
+        [Route("{id:int}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] UpdateTransactionCategoryCommand command,
             CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid)
+            if (id != command.Id)
             {
                 return BadRequest();
             }
 
-            var transactionCategory =
-                await _mediator.Send(new GetTransactionCategoryByIdQuery { Id = id }, cancellationToken);
-
-            if (transactionCategory is null)
-            {
-                return NotFound();
-            }
-            
             await _mediator.Send(command, cancellationToken);
-            
             return NoContent();
         }
         
-        [HttpDelete("{id:int}")]
+        [HttpDelete]
+        [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new DeleteTransactionCategoryCommand{ Id = id }, cancellationToken);
+            await _mediator.Send(new DeleteTransactionCategoryCommand(id), cancellationToken);
             return NoContent();
         }
     }
