@@ -1,6 +1,5 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Entities;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Commands.DeleteTransaction;
@@ -26,7 +25,6 @@ public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransaction
         }
 
         await _repository.DeleteAsync(transaction, cancellationToken);
-        
         return Unit.Value;
     }
 }

@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <Folder Include="Budgets\Commands" />
+      <Folder Include="Transactions\Queries\GetTransactionById" />
     </ItemGroup>
 
 </Project>

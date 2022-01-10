@@ -16,9 +16,9 @@ public class DeleteTransactionCategoryCommandHandler : IRequestHandler<DeleteTra
     {
         var transactionCategory = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (transactionCategory is null)
+        if (transactionCategory == null)
         {
-            return Unit.Value;
+            throw new Exception($"Transaction category with id {request.Id} not found");
         }
         
         await _repository.DeleteAsync(transactionCategory, cancellationToken);

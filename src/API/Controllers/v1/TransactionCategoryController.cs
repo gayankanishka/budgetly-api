@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Budgetly.API.Controllers.v1
 {
-    [ApiController]
     [Route("api/v1/[controller]")]
+    [ApiController]
     public class TransactionCategoryController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -31,8 +31,7 @@ namespace Budgetly.API.Controllers.v1
             return await _mediator.Send(query, cancellationToken);
         }
         
-        [HttpGet]
-        [Route("{id:int}")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -96,10 +95,9 @@ namespace Budgetly.API.Controllers.v1
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteAsync([FromRoute] DeleteTransactionCategoryCommand command,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
-            await _mediator.Send(command, cancellationToken);
+            await _mediator.Send(new DeleteTransactionCategoryCommand{ Id = id }, cancellationToken);
             return NoContent();
         }
     }

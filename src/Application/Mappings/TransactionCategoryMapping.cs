@@ -12,6 +12,5 @@ public class TransactionCategoryMapping : Profile
     {
         CreateMap<TransactionCategory, TransactionCategoryDto>();
         CreateMap<CreatTransactionCategoryCommand, TransactionCategory>();
-        CreateMap<UpdateTransactionCategoryCommand, TransactionCategoryDto>();
     }
 }
