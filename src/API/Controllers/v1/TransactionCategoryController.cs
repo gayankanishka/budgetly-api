@@ -4,7 +4,6 @@ using Budgetly.Application.TransactionCategories.Commands.DeleteTransactionCateg
 using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategories;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategoryById;
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Responses;
 using MediatR;

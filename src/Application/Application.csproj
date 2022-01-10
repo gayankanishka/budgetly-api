@@ -22,7 +22,8 @@
     <ItemGroup>
       <Folder Include="Budgets\Commands" />
       <Folder Include="Features" />
-      <Folder Include="Transactions\Commands" />
+      <Folder Include="Transactions\Commands\DeleteTransaction" />
+      <Folder Include="Transactions\Commands\UpdateTransaction" />
     </ItemGroup>
 
 </Project>
