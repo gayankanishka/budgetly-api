@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using Budgetly.Application.Transactions.Commands.CreateTransaction;
+using Budgetly.Application.Transactions.Commands.UpdateTransaction;
 using Budgetly.Application.Transactions.Queries.GetTransactions;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Responses;
@@ -49,9 +50,20 @@ namespace Budgetly.API.Controllers.v1
         }
         
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] int id, CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] UpdateTransactionCommand command,
+            CancellationToken cancellationToken)
         {
-            return Ok();
+
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+            
+            await _mediator.Send(command, cancellationToken);
+            return NoContent();
         }
         
         [HttpDelete("{id:int}")]
