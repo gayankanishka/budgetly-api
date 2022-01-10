@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using Budgetly.Application.Transactions.Commands.CreateTransaction;
+using Budgetly.Application.Transactions.Commands.DeleteTransaction;
 using Budgetly.Application.Transactions.Commands.UpdateTransaction;
 using Budgetly.Application.Transactions.Queries.GetTransactions;
 using Budgetly.Domain.Dtos;
@@ -14,10 +15,7 @@ namespace Budgetly.API.Controllers.v1
     public class TransactionController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        // TODO: GW | Required filters
-        // search by name, date filter with start and end, by recurring state
-
+        
         public TransactionController(IMediator mediator)
         {
             _mediator = mediator;
@@ -50,6 +48,7 @@ namespace Budgetly.API.Controllers.v1
         }
         
         [HttpPut("{id:int}")]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -67,8 +66,11 @@ namespace Budgetly.API.Controllers.v1
         }
         
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
+            await _mediator.Send(new DeleteTransactionCommand { Id = id }, cancellationToken);
             return NoContent();
         }
     }
