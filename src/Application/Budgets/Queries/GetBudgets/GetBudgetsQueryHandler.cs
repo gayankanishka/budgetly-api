@@ -1,8 +1,8 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Application.Responses;
 using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
+using Budgetly.Domain.Responses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Application.Responses;
 using Budgetly.Domain.Dtos;
+using Budgetly.Domain.Responses;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Queries.GetTransactions;

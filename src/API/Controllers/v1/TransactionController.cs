@@ -1,7 +1,7 @@
-using Budgetly.Application.Responses;
 using Budgetly.Application.Transactions.Queries.GetTransactions;
 using Budgetly.Domain.Common;
 using Budgetly.Domain.Dtos;
+using Budgetly.Domain.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

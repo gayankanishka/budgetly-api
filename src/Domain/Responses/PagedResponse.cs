@@ -1,4 +1,4 @@
-namespace Budgetly.Application.Responses;
+namespace Budgetly.Domain.Responses;
 
 public class PagedResponse<T> : Response<T> where T : class
 {
