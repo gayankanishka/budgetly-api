@@ -25,7 +25,14 @@ public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransaction
             throw new Exception($"Transaction with id {request.Id} not found");
         }
 
-        transaction = _mapper.Map<Transaction>(request);
+        transaction.Name = request.Name;
+        transaction.Amount = request.Amount;
+        transaction.Type = request.Type;
+        transaction.DateTime = request.DateTime;
+        transaction.Note = request.Note;
+        transaction.CategoryId = request.CategoryId;
+        transaction.IsRecurring = request.IsRecurring;
+        
         await _repository.UpdateAsync(transaction, cancellationToken);
         
         return Unit.Value;

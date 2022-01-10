@@ -13,6 +13,5 @@ public class TransactionMapping : Profile
         CreateMap<Transaction, TransactionDto>();
         CreateMap<TransactionCategory, TransactionCategoryDto>();
         CreateMap<CreateTransactionCommand, Transaction>();
-        CreateMap<UpdateTransactionCommand, Transaction>();
     }
 }
