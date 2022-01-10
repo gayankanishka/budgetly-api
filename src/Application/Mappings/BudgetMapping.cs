@@ -2,11 +2,11 @@ using AutoMapper;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 
-namespace Budgetly.Application.Budgets;
+namespace Budgetly.Application.Mappings;
 
-public class BudgetMappings : Profile
+public class BudgetMapping : Profile
 {
-    public BudgetMappings()
+    public BudgetMapping()
     {
         CreateMap<Budget, BudgetDto>();
         CreateMap<BudgetItem, BudgetItemDto>();

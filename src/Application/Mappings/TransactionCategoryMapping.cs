@@ -4,11 +4,11 @@ using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCateg
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 
-namespace Budgetly.Application.TransactionCategories;
+namespace Budgetly.Application.Mappings;
 
-public class TransactionCategoryMappings : Profile
+public class TransactionCategoryMapping : Profile
 {
-    public TransactionCategoryMappings()
+    public TransactionCategoryMapping()
     {
         CreateMap<TransactionCategory, TransactionCategoryDto>();
         CreateMap<CreatTransactionCategoryCommand, TransactionCategory>();
