@@ -21,7 +21,7 @@ internal class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await Context.Set<T>()
-            .FindAsync(new object?[] { id, cancellationToken }, cancellationToken);
+            .FindAsync(new object?[] { id }, cancellationToken: cancellationToken);
     }
 
     public Task<T> FindAsync(Expression<Func<T, bool>> query, CancellationToken cancellationToken)

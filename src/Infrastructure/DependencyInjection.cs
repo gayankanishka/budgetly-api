@@ -39,6 +39,9 @@ public static class DependencyInjection
                         a.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
         
+        // TODO: GW | Npgsql confusion on mappings, lets keep this for now
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        
         services.SeedDatabase();
 
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
