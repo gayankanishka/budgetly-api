@@ -31,14 +31,15 @@ namespace Budgetly.API.Controllers.v1
             return await _mediator.Send(query, cancellationToken);
         }
         
-        [HttpGet("{id:int}")]
+        [HttpGet]
+        [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<TransactionDto>> GetByIdAsync([FromRoute] GetTransactionByIdQuery query,
+        public async Task<ActionResult<TransactionDto>> GetByIdAsync([FromRoute] int id,
             CancellationToken cancellationToken)
         {
-            return await _mediator.Send(query, cancellationToken);
+            return await _mediator.Send(new GetTransactionByIdQuery(id), cancellationToken);
         }
 
         [HttpPost]
@@ -52,7 +53,8 @@ namespace Budgetly.API.Controllers.v1
             return await _mediator.Send(command, cancellationToken);
         }
         
-        [HttpPut("{id:int}")]
+        [HttpPut]
+        [Route("{id:int}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -60,7 +62,6 @@ namespace Budgetly.API.Controllers.v1
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] UpdateTransactionCommand command,
             CancellationToken cancellationToken)
         {
-
             if (id != command.Id)
             {
                 return BadRequest();
@@ -70,12 +71,13 @@ namespace Budgetly.API.Controllers.v1
             return NoContent();
         }
         
-        [HttpDelete("{id:int}")]
+        [HttpDelete]
+        [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new DeleteTransactionCommand { Id = id }, cancellationToken);
+            await _mediator.Send(new DeleteTransactionCommand(id), cancellationToken);
             return NoContent();
         }
     }
