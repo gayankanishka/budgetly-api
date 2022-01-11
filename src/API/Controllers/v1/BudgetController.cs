@@ -27,8 +27,7 @@ namespace Budgetly.API.Controllers.v1
            return await _mediator.Send(query, cancellationToken);
         }
         
-        [HttpGet]
-        [Route("{id:int}")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -44,24 +43,26 @@ namespace Budgetly.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
         {
+            // var actionName = nameof(GetByIdAsync);
+            // return CreatedAtAction(actionName, new { id = budget.Id }, budget);
             return Ok();
         }
         
         [HttpPut("{id:int}")]
-        [Route("{id:int}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
-            return Ok();
+            return NoContent();
         }
         
         [HttpDelete("{id:int}")]
-        [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
         {
             return NoContent();
