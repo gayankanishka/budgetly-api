@@ -2,7 +2,7 @@ using AutoMapper;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 
-namespace Budgetly.Application.Mappings;
+namespace Budgetly.Application.Common.Mappings;
 
 public class BudgetMapping : Profile
 {

@@ -1,10 +1,9 @@
 using AutoMapper;
 using Budgetly.Application.TransactionCategories.Commands.CreateTransactionCategory;
-using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 
-namespace Budgetly.Application.Mappings;
+namespace Budgetly.Application.Common.Mappings;
 
 public class TransactionCategoryMapping : Profile
 {

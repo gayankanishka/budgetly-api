@@ -1,6 +1,6 @@
 using Budgetly.Application.Common.Models;
 
-namespace Budgetly.Application.Mappings;
+namespace Budgetly.Application.Common.Mappings;
 
 public static class MappingExtensions
 {
