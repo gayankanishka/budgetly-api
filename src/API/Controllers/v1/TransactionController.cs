@@ -51,8 +51,7 @@ namespace Budgetly.API.Controllers.v1
         {
             var transaction = await _mediator.Send(command, cancellationToken);
 
-            var actionName = nameof(GetByIdAsync);
-            return CreatedAtAction(actionName, new { id = transaction.Id }, transaction);
+            return Created(string.Empty, transaction);
         }
         
         [HttpPut("{id:int}")]

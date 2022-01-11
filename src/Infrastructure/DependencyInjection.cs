@@ -27,12 +27,12 @@ public static class DependencyInjection
 
         if (databaseOptions.UseInMemoryDatabase)
         {
-            services.AddDbContextPool<ApplicationDbContext>(_ =>
+            services.AddDbContext<ApplicationDbContext>(_ =>
                 _.UseInMemoryDatabase("BudgetlyDb"));
         }
         else
         {
-            services.AddDbContextPool<ApplicationDbContext>(_ =>
+            services.AddDbContext<ApplicationDbContext>(_ =>
                 _.UseNpgsql(
                     databaseOptions.ConnectionString,
                     a => 

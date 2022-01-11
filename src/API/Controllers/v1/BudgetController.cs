@@ -43,8 +43,7 @@ namespace Budgetly.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
         {
-            // var actionName = nameof(GetByIdAsync);
-            // return CreatedAtAction(actionName, new { id = budget.Id }, budget);
+            // return Created(string.Empty, budget);
             return Ok();
         }
         
