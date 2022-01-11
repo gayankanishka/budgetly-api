@@ -1,8 +1,9 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Common;
+using Budgetly.Application.Common.Models;
+using Budgetly.Application.Mappings;
 using Budgetly.Domain.Dtos;
-using Budgetly.Domain.Responses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,22 +22,11 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, PagedResp
 
     public async Task<PagedResponse<BudgetDto>> Handle(GetBudgetsQuery request, CancellationToken cancellationToken)
     {
-        int skipAmount = (request.PageNumber - 1) * request.PageSize;
-
-        int totalRecords = await _repository.GetAll()
-            .CountAsync(cancellationToken);
-        
-        var budgets = await _repository.GetAll()
+        return await _repository.GetAll()
             .Include(x => x.BudgetItems)
             .ThenInclude(x => x.TransactionCategory)
-            .Skip(skipAmount)
-            .Take(request.PageSize)
-            .AsNoTracking()
             .OrderByDescending(x => x.EndDate)
-            .Select(x => _mapper.Map<BudgetDto>(x))
-            .ToListAsync(cancellationToken);
-        
-        return new PagedResponse<BudgetDto>(budgets, request.PageNumber, request.PageSize,
-            totalRecords);
+            .ProjectTo<BudgetDto>(_mapper.ConfigurationProvider)
+            .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

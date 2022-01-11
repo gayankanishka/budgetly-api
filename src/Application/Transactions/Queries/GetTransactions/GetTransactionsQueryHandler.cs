@@ -1,7 +1,9 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Application.Common.Models;
+using Budgetly.Application.Mappings;
 using Budgetly.Domain.Dtos;
-using Budgetly.Domain.Responses;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Queries.GetTransactions;
@@ -20,11 +22,9 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
-        int totalResults = await _repository.GetResultsCountAsync(request, cancellationToken);
-        
-        var transactions= await _repository.GetTransactionsAsync(request, cancellationToken);
-        var transactionsDto = _mapper.Map<IEnumerable<TransactionDto>>(transactions);
-        
-        return new PagedResponse<TransactionDto>(transactionsDto, request.PageNumber, request.PageSize, totalResults);
+        return await _repository.GetTransactionsAsync(request)
+                .OrderByDescending(x => x.DateTime)
+                .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
+                .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

@@ -1,11 +1,11 @@
 using System.Net.Mime;
+using Budgetly.Application.Common.Models;
 using Budgetly.Application.TransactionCategories.Commands.CreateTransactionCategory;
 using Budgetly.Application.TransactionCategories.Commands.DeleteTransactionCategory;
 using Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategories;
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategoryById;
 using Budgetly.Domain.Dtos;
-using Budgetly.Domain.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

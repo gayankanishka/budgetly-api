@@ -1,10 +1,10 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Common;
+using Budgetly.Application.Common.Models;
+using Budgetly.Application.Mappings;
 using Budgetly.Domain.Dtos;
-using Budgetly.Domain.Responses;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCategories;
 
@@ -23,20 +23,9 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
     public async Task<PagedResponse<TransactionCategoryDto>> Handle(GetTransactionCategoriesQuery request, 
         CancellationToken cancellationToken)
     {
-        int skipAmount = (request.PageNumber - 1) * request.PageSize;
-
-        int totalRecords = await _repository.GetAll()
-            .CountAsync(cancellationToken);
-        
-        var categories = await _repository.GetAll()
-            .Skip(skipAmount)
-            .Take(request.PageSize)
-            .AsNoTracking()
+        return await _repository.GetAll()
             .OrderBy(x => x.Name)
-            .Select(x => _mapper.Map<TransactionCategoryDto>(x))
-            .ToListAsync(cancellationToken);
-        
-       return new PagedResponse<TransactionCategoryDto>(categories, request.PageNumber, request.PageSize,
-           totalRecords);
+            .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)
+            .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

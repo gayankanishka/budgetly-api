@@ -1,7 +1,7 @@
 using System.Net.Mime;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
-using Budgetly.Domain.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

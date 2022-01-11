@@ -1,4 +1,4 @@
-namespace Budgetly.Domain.Responses;
+namespace Budgetly.Application.Common.Models;
 
 public class Response<T> where T : class
 {
