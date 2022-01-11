@@ -1,5 +1,6 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Budgetly.Application.Common.Filterings;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;
@@ -12,19 +13,22 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
 {
     private readonly ITransactionRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ICurrentUserService _user;
 
-    public GetTransactionsQueryHandler(ITransactionRepository repository, IMapper mapper)
+    public GetTransactionsQueryHandler(ITransactionRepository repository, IMapper mapper, ICurrentUserService user)
     {
         _repository = repository;
         _mapper = mapper;
+        _user = user;
     }
 
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
         return await _repository.GetTransactionsAsync(request)
-                .OrderByDescending(x => x.DateTime)
-                .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
-                .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
+            .ForCurrentUser(_user.UserId)
+            .OrderByDescending(x => x.DateTime)
+            .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
+            .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

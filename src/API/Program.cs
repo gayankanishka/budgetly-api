@@ -1,4 +1,6 @@
+using Budgetly.API.Services;
 using Budgetly.Application;
+using Budgetly.Application.Common.Interfaces;
 using Budgetly.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);

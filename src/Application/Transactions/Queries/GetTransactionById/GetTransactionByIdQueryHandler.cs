@@ -18,7 +18,8 @@ public class GetTransactionByIdQueryHandler : IRequestHandler<GetTransactionById
 
     public async Task<TransactionDto> Handle(GetTransactionByIdQuery request, CancellationToken cancellationToken)
     {
-        var transaction = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var transaction = await _repository
+            .GetByIdAsync(request.Id, cancellationToken);
         
         return _mapper.Map<TransactionDto>(transaction);
     }
