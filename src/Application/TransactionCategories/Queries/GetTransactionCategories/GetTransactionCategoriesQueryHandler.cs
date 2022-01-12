@@ -28,6 +28,7 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
     {
         return await _repository.GetAll()
             .ForCurrentUser(_user.UserId)
+            .ApplyFilters(request)
             .OrderBy(x => x.Name)
             .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);

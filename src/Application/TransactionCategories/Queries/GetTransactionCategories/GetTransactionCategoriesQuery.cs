@@ -8,4 +8,5 @@ namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCateg
 
 public class GetTransactionCategoriesQuery : QueryParameters, IRequest<PagedResponse<TransactionCategoryDto>>
 {
+    public bool? Preset { get; set; }
 }

@@ -6,6 +6,7 @@ using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Transactions.Queries.GetTransactions;
 
@@ -25,8 +26,10 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
-        return await _repository.GetTransactionsAsync(request)
+        return await _repository.GetAll()
+            .Include(x => x.Category)
             .ForCurrentUser(_user.UserId)
+            .ApplyFilters(request)
             .OrderByDescending(x => x.DateTime)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);

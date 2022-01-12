@@ -5,5 +5,4 @@ namespace Budgetly.Application.Common.Interfaces;
 
 public interface ITransactionRepository : IGenericRepository<Transaction>
 {
-    IQueryable<Transaction> GetTransactionsAsync(GetTransactionsQuery query);
 }

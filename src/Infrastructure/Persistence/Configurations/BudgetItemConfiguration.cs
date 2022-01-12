@@ -12,6 +12,7 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
             new BudgetItem()
             {
                 Id = 1,
+                Name = "Food",
                 TransactionCategoryId = 2,
                 BudgetId = 1,
                 Amount = 25000,
