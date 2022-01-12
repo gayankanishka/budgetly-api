@@ -1,6 +1,7 @@
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Infrastructure.Persistence;
 using Budgetly.Infrastructure.Persistence.Imports;
+using Budgetly.Infrastructure.Persistence.Options;
 using Budgetly.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

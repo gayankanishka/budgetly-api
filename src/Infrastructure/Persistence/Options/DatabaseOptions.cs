@@ -1,4 +1,4 @@
-namespace Budgetly.Infrastructure.Persistence;
+namespace Budgetly.Infrastructure.Persistence.Options;
 
 public class DatabaseOptions
 {
