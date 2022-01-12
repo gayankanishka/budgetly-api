@@ -1,8 +1,6 @@
-using Budgetly.Domain.Common;
-
 namespace Budgetly.Domain.Entities;
 
-public class BudgetItem : AuditableEntity
+public class BudgetItem : BaseEntity
 {
     public int BudgetId { get; set; }
     public int TransactionCategoryId { get; set; } // TODO: lets remove this if it's hard to implement

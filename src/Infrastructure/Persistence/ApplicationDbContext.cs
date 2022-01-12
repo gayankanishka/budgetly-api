@@ -1,6 +1,5 @@
 using System.Reflection;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +28,7 @@ public class ApplicationDbContext : DbContext
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
         {
             switch (entry.State)
             {

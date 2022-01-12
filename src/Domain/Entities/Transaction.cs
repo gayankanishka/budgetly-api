@@ -1,11 +1,9 @@
-using Budgetly.Domain.Common;
 using Budgetly.Domain.Enums;
 
 namespace Budgetly.Domain.Entities;
 
-public class Transaction : AuditableEntity
+public class Transaction : BaseEntity
 {
-    public string Name { get; set; }
     public double Amount { get; set; }
     public TransactionTypes Type { get; set; }
     public DateTimeOffset DateTime { get; set; }
