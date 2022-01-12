@@ -1,6 +1,8 @@
 using AutoMapper;
+using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Dtos;
+using Budgetly.Domain.Entities;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Queries.GetTransactionById;
@@ -20,6 +22,11 @@ public class GetTransactionByIdQueryHandler : IRequestHandler<GetTransactionById
     {
         var transaction = await _repository
             .GetByIdAsync(request.Id, cancellationToken);
+
+        if (transaction == null)
+        {
+            throw new NotFoundException(nameof(Transaction), request.Id);
+        }
         
         return _mapper.Map<TransactionDto>(transaction);
     }

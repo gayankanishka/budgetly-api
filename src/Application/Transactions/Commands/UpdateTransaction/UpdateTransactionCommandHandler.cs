@@ -1,4 +1,5 @@
 using AutoMapper;
+using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
 using MediatR;
@@ -22,7 +23,7 @@ public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransaction
         
         if (transaction == null)
         {
-            throw new Exception($"Transaction with id {request.Id} not found");
+            throw new NotFoundException(nameof(Transaction), request.Id);
         }
 
         transaction.Name = request.Name;

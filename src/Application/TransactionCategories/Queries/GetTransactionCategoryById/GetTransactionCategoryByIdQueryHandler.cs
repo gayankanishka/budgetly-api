@@ -1,6 +1,8 @@
 using AutoMapper;
+using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Dtos;
+using Budgetly.Domain.Entities;
 using MediatR;
 
 namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCategoryById;
@@ -21,6 +23,11 @@ public class GetTransactionCategoryByIdQueryHandler : IRequestHandler<GetTransac
         CancellationToken cancellationToken)
     {
         var transactionCategory = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        
+        if (transactionCategory == null)
+        {
+            throw new NotFoundException(nameof(TransactionCategory), request.Id);
+        }
         
         return _mapper.Map<TransactionCategoryDto>(transactionCategory);
     }

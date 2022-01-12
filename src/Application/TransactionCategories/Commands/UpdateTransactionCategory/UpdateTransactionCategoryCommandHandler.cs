@@ -1,5 +1,7 @@
 using AutoMapper;
+using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Domain.Entities;
 using MediatR;
 
 namespace Budgetly.Application.TransactionCategories.Commands.UpdateTransactionCategory;
@@ -7,12 +9,10 @@ namespace Budgetly.Application.TransactionCategories.Commands.UpdateTransactionC
 public class UpdateTransactionCategoryCommandHandler : IRequestHandler<UpdateTransactionCategoryCommand>
 {
     private readonly ITransactionCategoryRepository _repository;
-    private readonly IMapper _mapper;
 
-    public UpdateTransactionCategoryCommandHandler(ITransactionCategoryRepository repository, IMapper mapper)
+    public UpdateTransactionCategoryCommandHandler(ITransactionCategoryRepository repository)
     {
         _repository = repository;
-        _mapper = mapper;
     }
 
     public async Task<Unit> Handle(UpdateTransactionCategoryCommand request, CancellationToken cancellationToken)
@@ -21,7 +21,7 @@ public class UpdateTransactionCategoryCommandHandler : IRequestHandler<UpdateTra
         
         if (transactionCategory == null)
         {
-            throw new Exception($"Transaction category with id {request.Id} not found");
+            throw new NotFoundException(nameof(TransactionCategory), request.Id);
         }
         
         transactionCategory.Name = request.Name;

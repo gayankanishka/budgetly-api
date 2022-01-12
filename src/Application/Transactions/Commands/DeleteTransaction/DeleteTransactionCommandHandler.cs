@@ -1,5 +1,7 @@
 using AutoMapper;
+using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Domain.Entities;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Commands.DeleteTransaction;
@@ -21,7 +23,7 @@ public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransaction
         
         if (transaction == null)
         {
-            throw new Exception($"Transaction with id {request.Id} not found");
+            throw new NotFoundException(nameof(Transaction), request.Id);
         }
 
         await _repository.DeleteAsync(transaction, cancellationToken);
