@@ -63,10 +63,7 @@ public static class FilteringExtensions
                     transactionCategoriesQuery =
                         transactionCategoriesQuery.Where(x => x.IsPreset == transactionCategoriesFilters.Preset);
                 }
-
-                transactionCategoriesQuery = transactionCategoriesQuery.Where(x => 
-                    x.Created >= transactionCategoriesFilters.StartDate && x.Created <= transactionCategoriesFilters.EndDate);
-            
+                
                 return (IQueryable<TEntity>)transactionCategoriesQuery;
             }
             case GetBudgetsQuery budgetFilters when query is IQueryable<Budget> budgetQuery:
