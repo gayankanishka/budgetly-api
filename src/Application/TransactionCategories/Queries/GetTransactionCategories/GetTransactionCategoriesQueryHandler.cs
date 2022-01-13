@@ -27,7 +27,7 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
         CancellationToken cancellationToken)
     {
         return await _repository.GetAll()
-            .ForCurrentUser(_user.UserId)
+            .Where(x => x.UserId == _user.UserId || x.IsPreset == true)
             .ApplyFilters(request)
             .OrderBy(x => x.Name)
             .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)
