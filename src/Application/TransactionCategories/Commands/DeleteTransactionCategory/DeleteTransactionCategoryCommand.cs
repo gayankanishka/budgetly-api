@@ -1,4 +1,3 @@
-using Budgetly.Domain.Dtos;
 using MediatR;
 
 namespace Budgetly.Application.TransactionCategories.Commands.DeleteTransactionCategory;
