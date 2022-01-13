@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using ValidationException = Budgetly.Application.Common.Exceptions.ValidationException;
 
 namespace Budgetly.Application.Common.Behaviours;
 
