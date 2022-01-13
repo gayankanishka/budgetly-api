@@ -17,7 +17,7 @@ public class UpdateTransactionCategoryCommandValidator : AbstractValidator<Updat
             .WithMessage("Description must be less than 200 characters");
 
         RuleFor(x => x.IsPreset)
-            .NotEmpty()
+            .NotNull()
             .WithMessage("IsPreset is required");
     }
 }
