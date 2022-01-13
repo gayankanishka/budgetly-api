@@ -29,7 +29,8 @@ public static class FilteringExtensions
             query = query.Where(x => x.Name.Contains(filters.Name.Trim(),
                 StringComparison.CurrentCultureIgnoreCase));
         }
-
+        
+        // TODO: GK | We might have to refactor this for better readability
         switch (filters)
         {
             // Add your query types here to chain the query
@@ -44,6 +45,11 @@ public static class FilteringExtensions
                 {
                     transactionQuery = transactionQuery.Where(x => x.Type == transactionFilters.TransactionType);
                 }
+                
+                if (transactionFilters.CategoryId != null)
+                {
+                    transactionQuery = transactionQuery.Where(x => x.CategoryId == transactionFilters.CategoryId);
+                }
             
                 transactionQuery = transactionQuery.Where(x => 
                     x.DateTime >= filters.StartDate && x.DateTime <= filters.EndDate);
@@ -57,7 +63,7 @@ public static class FilteringExtensions
                     transactionCategoriesQuery =
                         transactionCategoriesQuery.Where(x => x.IsPreset == transactionCategoriesFilters.Preset);
                 }
-            
+
                 transactionCategoriesQuery = transactionCategoriesQuery.Where(x => 
                     x.Created >= transactionCategoriesFilters.StartDate && x.Created <= transactionCategoriesFilters.EndDate);
             
