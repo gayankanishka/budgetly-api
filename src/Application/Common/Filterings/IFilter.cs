@@ -1,6 +1,6 @@
 namespace Budgetly.Application.Common.Filterings;
 
-public interface IFilters
+public interface IFilter
 {
     public string Name { get; set; }
     
