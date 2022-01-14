@@ -7,12 +7,14 @@ using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategorie
 using Budgetly.Application.TransactionCategories.Queries.GetTransactionCategoryById;
 using Budgetly.Domain.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Budgetly.API.Controllers.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public class TransactionCategoryController : ControllerBase
     {
         private readonly IMediator _mediator;
