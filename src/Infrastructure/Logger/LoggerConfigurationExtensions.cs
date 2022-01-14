@@ -19,7 +19,7 @@ public static class LoggerConfigurationExtensions
     public static LoggerConfiguration ConfigureBaseLogging(this LoggerConfiguration loggerConfiguration, string appName)
     {
         loggerConfiguration
-            .MinimumLevel.Debug()
+            .MinimumLevel.Information()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
             .WriteTo.Async(a => a.Console(theme: AnsiConsoleTheme.Code))
             .Enrich.FromLogContext()
