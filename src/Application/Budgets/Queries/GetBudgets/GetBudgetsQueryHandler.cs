@@ -1,5 +1,6 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;
@@ -23,6 +24,7 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, Paged
     {
         return await _itemRepository.GetAll()
             .Include(x => x.TransactionCategory)
+            .ApplyFilters(request)
             .OrderByDescending(x => x.Name)
             .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider)
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
