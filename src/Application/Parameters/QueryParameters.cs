@@ -1,4 +1,4 @@
-using Budgetly.Application.Common.Filterings;
+using Budgetly.Application.Common.Filters;
 
 namespace Budgetly.Application.Parameters;
 

@@ -1,6 +1,6 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Budgetly.Application.Common.Filterings;
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;
@@ -18,9 +18,9 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
 
     public GetTransactionsQueryHandler(ITransactionRepository repository, IMapper mapper, ICurrentUserService user)
     {
-        _repository = repository;
-        _mapper = mapper;
-        _user = user;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _user = user ?? throw new ArgumentNullException(nameof(user));
     }
 
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,

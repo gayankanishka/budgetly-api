@@ -1,6 +1,6 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Budgetly.Application.Common.Filterings;
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;

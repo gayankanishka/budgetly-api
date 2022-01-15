@@ -1,4 +1,4 @@
-namespace Budgetly.Application.Common.Filterings;
+namespace Budgetly.Application.Common.Filters;
 
 public interface IFilter
 {
