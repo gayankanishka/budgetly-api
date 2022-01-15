@@ -30,7 +30,7 @@ public static class LoggerConfigurationExtensions
         return loggerConfiguration;
     }
 
-    public static LoggerConfiguration AddApplicationInsightsLogging(this LoggerConfiguration loggerConfiguration, 
+    public static LoggerConfiguration AddApplicationInsightsLogging(this LoggerConfiguration loggerConfiguration,
         IServiceProvider services, IConfiguration configuration)
     {
         if (!string.IsNullOrWhiteSpace(configuration.GetValue<string>("APPINSIGHTS_INSTRUMENTATIONKEY")))

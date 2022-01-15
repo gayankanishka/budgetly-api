@@ -8,25 +8,25 @@ namespace Budgetly.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext
 {
     private readonly ICurrentUserService _user;
-    
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user)
         : base(options)
     {
         _user = user;
     }
-    
+
     public DbSet<Budget> Budgets { get; set; } = default!;
     public DbSet<TransactionCategory> TransactionCategories { get; set; } = default!;
     public DbSet<Transaction> Transactions { get; set; } = default!;
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         base.OnModelCreating(modelBuilder);
     }
-    
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         foreach (var entry in ChangeTracker.Entries<BaseEntity>())
         {

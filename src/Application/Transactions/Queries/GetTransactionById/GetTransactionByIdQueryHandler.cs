@@ -27,7 +27,7 @@ public class GetTransactionByIdQueryHandler : IRequestHandler<GetTransactionById
         {
             throw new NotFoundException(nameof(Transaction), request.Id);
         }
-        
+
         return _mapper.Map<TransactionDto>(transaction);
     }
 }

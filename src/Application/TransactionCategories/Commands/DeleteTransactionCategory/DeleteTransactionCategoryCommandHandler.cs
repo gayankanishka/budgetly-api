@@ -22,7 +22,7 @@ public class DeleteTransactionCategoryCommandHandler : IRequestHandler<DeleteTra
         {
             throw new NotFoundException(nameof(TransactionCategory), request.Id);
         }
-        
+
         await _repository.DeleteAsync(transactionCategory, cancellationToken);
         return Unit.Value;
     }

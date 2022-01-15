@@ -20,7 +20,7 @@ public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransaction
     public async Task<Unit> Handle(UpdateTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        
+
         if (transaction == null)
         {
             throw new NotFoundException(nameof(Transaction), request.Id);
@@ -33,9 +33,9 @@ public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransaction
         transaction.Note = request.Note;
         transaction.CategoryId = request.CategoryId;
         transaction.IsRecurring = request.IsRecurring;
-        
+
         await _repository.UpdateAsync(transaction, cancellationToken);
-        
+
         return Unit.Value;
     }
 }

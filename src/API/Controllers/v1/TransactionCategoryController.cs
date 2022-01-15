@@ -68,7 +68,10 @@ public class TransactionCategoryController : ControllerBase
         [FromBody] UpdateTransactionCategoryCommand command,
         CancellationToken cancellationToken)
     {
-        if (id != command.Id) return BadRequest();
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
 
         await _mediator.Send(command, cancellationToken);
         return NoContent();

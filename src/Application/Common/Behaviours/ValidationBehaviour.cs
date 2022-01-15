@@ -21,7 +21,7 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
         {
             return await next();
         }
-        
+
         var context = new ValidationContext<TRequest>(request);
 
         var validationResults = await Task.WhenAll(
@@ -37,7 +37,7 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
         {
             throw new ValidationException(failures);
         }
-        
+
         return await next();
     }
 }

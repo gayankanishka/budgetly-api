@@ -23,12 +23,12 @@ public class GetTransactionCategoryByIdQueryHandler : IRequestHandler<GetTransac
         CancellationToken cancellationToken)
     {
         var transactionCategory = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        
+
         if (transactionCategory == null)
         {
             throw new NotFoundException(nameof(TransactionCategory), request.Id);
         }
-        
+
         return _mapper.Map<TransactionCategoryDto>(transactionCategory);
     }
 }

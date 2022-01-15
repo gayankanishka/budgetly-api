@@ -20,7 +20,7 @@ public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransaction
     public async Task<Unit> Handle(DeleteTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        
+
         if (transaction == null)
         {
             throw new NotFoundException(nameof(Transaction), request.Id);

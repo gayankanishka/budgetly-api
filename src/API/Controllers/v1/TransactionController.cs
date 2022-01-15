@@ -66,7 +66,10 @@ public class TransactionController : ControllerBase
     public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] UpdateTransactionCommand command,
         CancellationToken cancellationToken)
     {
-        if (id != command.Id) return BadRequest();
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
 
         await _mediator.Send(command, cancellationToken);
         return NoContent();
