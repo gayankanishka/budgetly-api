@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
 using Budgetly.Domain.Dtos;
 using MediatR;
@@ -42,10 +43,12 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> CreateAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<BudgetItemDto>> CreateAsync([FromBody] CreateBudgetItemCommand command,
+    CancellationToken cancellationToken)
     {
-        // return Created(string.Empty, budget);
-        return Ok();
+        var transaction = await _mediator.Send(command, cancellationToken);
+
+        return Created(string.Empty, transaction);
     }
 
     [HttpPut("{id:int}")]
