@@ -97,10 +97,23 @@ public static class FilteringExtensions
 
     private static IQueryable<BudgetItem> FilterBudgets(this IQueryable<BudgetItem> query, GetBudgetItemsQuery filters)
     {
-        // TODO: GK | Add filtering for budgets
+        if(filters.Exceeded != null)
+        {
+            if (filters.Exceeded.HasValue && filters.Exceeded.Value)
+            {
+                query = query.Where(x => x.ActualExpense > x.TargetExpense);
+            }
+            else
+            {
+                query = query.Where(x => x.ActualExpense <= x.TargetExpense);
+            }
+        }
 
-        query = query.Where(x =>
+        if(filters.TransactionCategoryId != null)
+        {
+            query = query.Where(x =>
             x.TransactionCategoryId == filters.TransactionCategoryId);
+        }
 
         return query;
     }

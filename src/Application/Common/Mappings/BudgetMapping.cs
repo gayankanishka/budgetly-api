@@ -1,4 +1,5 @@
 using AutoMapper;
+using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 
@@ -9,5 +10,6 @@ public class BudgetMapping : Profile
     public BudgetMapping()
     {
         CreateMap<BudgetItem, BudgetItemDto>();
+        CreateMap<CreateBudgetItemCommand, BudgetItem>();
     }
 }

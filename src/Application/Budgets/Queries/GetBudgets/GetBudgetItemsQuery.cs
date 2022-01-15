@@ -4,9 +4,8 @@ using Budgetly.Domain.Dtos;
 using MediatR;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
-
-public class GetBudgetItemsQuery : IRequest<IEnumerable<BudgetItemDto>>
+public class GetBudgetItemsQuery : QueryParameters, IRequest<PagedResponse<BudgetItemDto>>
 {
-    public string? Name { get; set; }
+    public bool? Exceeded { get; set; }
     public int? TransactionCategoryId { get; set; }
 }

@@ -1,13 +1,15 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Application.Common.Mappings;
+using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
-
-public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, IEnumerable<BudgetItemDto>>
+public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
 {
     private readonly IMapper _mapper;
     private readonly IBudgetItemRepository _itemRepository;
@@ -18,11 +20,13 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, IEnum
         _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
     }
 
-    public async Task<IEnumerable<BudgetItemDto>> Handle(GetBudgetItemsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResponse<BudgetItemDto>> Handle(GetBudgetItemsQuery request, CancellationToken cancellationToken)
     {
-        return _itemRepository.GetAll()
+        return await _itemRepository.GetAll()
             .Include(x => x.TransactionCategory)
+            .ApplyFilters(request)
             .OrderByDescending(x => x.Name)
-            .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider);
+            .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider)
+            .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }
