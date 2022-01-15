@@ -28,7 +28,7 @@ public class UpdateBudgetItemCommandHandler : IRequestHandler<UpdateBudgetItemCo
 
         budget.Name = request.Name;
         budget.Description = request.Description;
-        budget.TransactionCategoryId = request.CategoryId;
+        budget.TransactionCategoryId = request.TransactionCategoryId;
         budget.TargetExpense = request.TargetExpense;
 
 

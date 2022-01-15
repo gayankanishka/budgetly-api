@@ -20,7 +20,7 @@ public class CreateBudgetItemCommandValidator : AbstractValidator<CreateBudgetIt
             .NotNull()
             .WithMessage("TargetExpense is required");
 
-        RuleFor(x => x.CategoryId)
+        RuleFor(x => x.TransactionCategoryId)
             .NotNull()
             .WithMessage("CategoryId is required");
     }
