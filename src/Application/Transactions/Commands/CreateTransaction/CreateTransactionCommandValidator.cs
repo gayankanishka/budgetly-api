@@ -11,7 +11,7 @@ public class CreateTransactionCommandValidator : AbstractValidator<CreateTransac
             .WithMessage("Name must be at least 3 characters long")
             .MaximumLength(50)
             .WithMessage("Name must be less than 50 characters");
-        
+
         RuleFor(x => x.Amount)
             .NotNull()
             .WithMessage("Amount is required");
@@ -25,7 +25,7 @@ public class CreateTransactionCommandValidator : AbstractValidator<CreateTransac
         RuleFor(x => x.DateTime)
             .NotNull()
             .WithMessage("DateTime is not valid");
-        
+
         RuleFor(x => x.Note)
             .MaximumLength(250)
             .WithMessage("Note must be less than 250 characters");
@@ -33,7 +33,7 @@ public class CreateTransactionCommandValidator : AbstractValidator<CreateTransac
         RuleFor(x => x.CategoryId)
             .GreaterThanOrEqualTo(1)
             .WithMessage("CategoryId must be a valid value");
-        
+
         RuleFor(x => x.IsRecurring)
             .NotNull()
             .WithMessage("IsRecurring is required");

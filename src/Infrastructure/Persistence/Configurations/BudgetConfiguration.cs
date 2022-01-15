@@ -17,7 +17,7 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
                 StartDate = new DateTime(2022, 1, 1),
                 EndDate = new DateTime(2022, 1, 31),
                 BudgeLimit = 200000,
-                UserId = "",
+                UserId = ""
             });
     }
 }

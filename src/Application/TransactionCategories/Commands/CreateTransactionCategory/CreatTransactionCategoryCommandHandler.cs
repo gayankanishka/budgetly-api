@@ -18,11 +18,11 @@ public class CreatTransactionCategoryCommandHandler : IRequestHandler<CreatTrans
         _mapper = mapper;
     }
 
-    public async Task<TransactionCategoryDto> Handle(CreatTransactionCategoryCommand request, 
+    public async Task<TransactionCategoryDto> Handle(CreatTransactionCategoryCommand request,
         CancellationToken cancellationToken)
     {
         var transactionCategory = _mapper.Map<TransactionCategory>(request);
-        
+
         await _repository.AddAsync(transactionCategory, cancellationToken);
         return _mapper.Map<TransactionCategoryDto>(transactionCategory);
     }

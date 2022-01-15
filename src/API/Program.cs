@@ -47,13 +47,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization(o =>
 {
-    o.AddPolicy("read:transactions", p => p.
-        RequireAuthenticatedUser().
-        RequireClaim("scope", "read:transactions"));
+    o.AddPolicy("read:transactions", p => p.RequireAuthenticatedUser().RequireClaim("scope", "read:transactions"));
 });
 
 builder.Services.AddSwaggerGen();
-    
+
 builder.Services.AddHealthChecks();
 builder.Services.AddHttpContextAccessor();
 

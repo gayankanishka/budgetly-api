@@ -24,9 +24,9 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> :
         {
             var requestName = typeof(TRequest).Name;
 
-            _logger.LogError(ex, "Budgetly API Request: Unhandled Exception for Request {Name} {@Request}", 
+            _logger.LogError(ex, "Budgetly API Request: Unhandled Exception for Request {Name} {@Request}",
                 requestName, request);
-            
+
             throw;
         }
     }

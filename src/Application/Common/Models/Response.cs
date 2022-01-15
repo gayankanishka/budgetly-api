@@ -14,9 +14,9 @@ public class Response<T> where T : class
         Succeeded = false;
         Message = message;
     }
-    
+
     public bool Succeeded { get; set; }
     public string? Message { get; set; }
-    public  List<string>? Errors { get; set; }
+    public List<string>? Errors { get; set; }
     public IEnumerable<T>? Data { get; private set; }
 }

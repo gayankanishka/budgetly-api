@@ -18,12 +18,12 @@ public class PagedResponse<T> : Response<T> where T : class
     public int? PageSize { get; }
     public bool HasPrevious => PageNumber > 1;
     public bool HasNext => PageNumber < TotalPages;
-    
-    public static async Task<PagedResponse<T>> CreateAsync(IQueryable<T> source, int pageNumber, int pageSize, 
+
+    public static async Task<PagedResponse<T>> CreateAsync(IQueryable<T> source, int pageNumber, int pageSize,
         CancellationToken cancellationToken)
     {
         var count = await source.CountAsync(cancellationToken);
-        
+
         var items = await source.Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync(cancellationToken);

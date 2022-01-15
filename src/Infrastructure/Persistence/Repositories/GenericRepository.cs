@@ -7,7 +7,7 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal abstract class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     protected readonly ApplicationDbContext Context;
-    
+
     protected GenericRepository(ApplicationDbContext context)
     {
         Context = context ?? throw new ArgumentNullException(nameof(context));
@@ -21,7 +21,7 @@ internal abstract class GenericRepository<T> : IGenericRepository<T> where T : B
     public virtual async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await Context.Set<T>()
-            .FindAsync(new object?[] { id }, cancellationToken: cancellationToken);
+            .FindAsync(new object?[] { id }, cancellationToken);
     }
 
     public virtual async Task AddAsync(T entity, CancellationToken cancellationToken)

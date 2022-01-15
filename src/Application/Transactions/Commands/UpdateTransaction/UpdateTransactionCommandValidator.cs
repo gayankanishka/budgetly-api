@@ -9,13 +9,13 @@ public class UpdateTransactionCommandValidator : AbstractValidator<UpdateTransac
         RuleFor(x => x.Id)
             .GreaterThanOrEqualTo(1)
             .WithMessage("Id must be a valid value");
-        
+
         RuleFor(x => x.Name)
             .MinimumLength(3)
             .WithMessage("Name must be at least 3 characters long")
             .MaximumLength(50)
             .WithMessage("Name must be less than 50 characters");
-        
+
         RuleFor(x => x.Amount)
             .NotNull()
             .WithMessage("Amount is required");
@@ -29,7 +29,7 @@ public class UpdateTransactionCommandValidator : AbstractValidator<UpdateTransac
         RuleFor(x => x.DateTime)
             .NotNull()
             .WithMessage("DateTime is not valid");
-        
+
         RuleFor(x => x.Note)
             .MaximumLength(250)
             .WithMessage("Note must be less than 250 characters");
@@ -37,7 +37,7 @@ public class UpdateTransactionCommandValidator : AbstractValidator<UpdateTransac
         RuleFor(x => x.CategoryId)
             .GreaterThanOrEqualTo(1)
             .WithMessage("CategoryId must be a valid value");
-        
+
         RuleFor(x => x.IsRecurring)
             .NotNull()
             .WithMessage("IsRecurring is required");

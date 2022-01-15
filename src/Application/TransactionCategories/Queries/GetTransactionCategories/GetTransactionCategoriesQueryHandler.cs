@@ -16,14 +16,15 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
     private readonly IMapper _mapper;
     private readonly ICurrentUserService _user;
 
-    public GetTransactionCategoriesQueryHandler(ITransactionCategoryRepository repository, IMapper mapper, ICurrentUserService user)
+    public GetTransactionCategoriesQueryHandler(ITransactionCategoryRepository repository, IMapper mapper,
+        ICurrentUserService user)
     {
         _repository = repository;
         _mapper = mapper;
         _user = user;
     }
 
-    public async Task<PagedResponse<TransactionCategoryDto>> Handle(GetTransactionCategoriesQuery request, 
+    public async Task<PagedResponse<TransactionCategoryDto>> Handle(GetTransactionCategoriesQuery request,
         CancellationToken cancellationToken)
     {
         return await _repository.GetAll()
