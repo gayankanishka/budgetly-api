@@ -8,7 +8,6 @@ public class BudgetMapping : Profile
 {
     public BudgetMapping()
     {
-        CreateMap<Budget, BudgetDto>();
         CreateMap<BudgetItem, BudgetItemDto>();
     }
 }

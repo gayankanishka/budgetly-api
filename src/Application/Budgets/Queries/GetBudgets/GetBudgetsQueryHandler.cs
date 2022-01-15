@@ -1,34 +1,28 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Application.Common.Mappings;
-using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
-public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, PagedResponse<BudgetDto>>
+public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, IEnumerable<BudgetItemDto>>
 {
     private readonly IMapper _mapper;
-    private readonly IBudgetRepository _repository;
+    private readonly IBudgetItemRepository _itemRepository;
 
-    public GetBudgetsQueryHandler(IMapper mapper, IBudgetRepository repository)
+    public GetBudgetsQueryHandler(IMapper mapper, IBudgetItemRepository itemRepository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
     }
 
-    public async Task<PagedResponse<BudgetDto>> Handle(GetBudgetsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<BudgetItemDto>> Handle(GetBudgetItemsQuery request, CancellationToken cancellationToken)
     {
-        return await _repository.GetAll()
-            .Include(x => x.BudgetItems)
-            .ThenInclude(x => x.TransactionCategory)
-            .ApplyFilters(request)
-            .OrderByDescending(x => x.EndDate)
-            .ProjectTo<BudgetDto>(_mapper.ConfigurationProvider)
-            .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
+        return _itemRepository.GetAll()
+            .Include(x => x.TransactionCategory)
+            .OrderByDescending(x => x.Name)
+            .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider);
     }
 }

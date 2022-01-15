@@ -47,7 +47,7 @@ public static class FilteringExtensions
                 return (IQueryable<TEntity>)transactionCategoriesQuery
                     .FilterTransactionCategories(transactionCategoriesFilters);
             }
-            case GetBudgetsQuery budgetFilters when query is IQueryable<Budget> budgetQuery:
+            case GetBudgetItemsQuery budgetFilters when query is IQueryable<BudgetItem> budgetQuery:
             {
                 return (IQueryable<TEntity>)budgetQuery
                     .FilterBudgets(budgetFilters);
@@ -95,12 +95,12 @@ public static class FilteringExtensions
         return query;
     }
 
-    private static IQueryable<Budget> FilterBudgets(this IQueryable<Budget> query, GetBudgetsQuery filters)
+    private static IQueryable<BudgetItem> FilterBudgets(this IQueryable<BudgetItem> query, GetBudgetItemsQuery filters)
     {
         // TODO: GK | Add filtering for budgets
 
         query = query.Where(x =>
-            x.StartDate >= filters.StartDate && x.EndDate <= filters.EndDate);
+            x.TransactionCategoryId == filters.TransactionCategoryId);
 
         return query;
     }

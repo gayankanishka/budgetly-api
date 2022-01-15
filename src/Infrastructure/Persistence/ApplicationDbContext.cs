@@ -15,7 +15,7 @@ public class ApplicationDbContext : DbContext
         _user = user;
     }
 
-    public DbSet<Budget> Budgets { get; set; } = default!;
+    public DbSet<BudgetItem> BudgetItems { get; set; } = default!;
     public DbSet<TransactionCategory> TransactionCategories { get; set; } = default!;
     public DbSet<Transaction> Transactions { get; set; } = default!;
 

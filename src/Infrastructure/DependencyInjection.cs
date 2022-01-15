@@ -47,7 +47,7 @@ public static class DependencyInjection
 
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
-        services.AddScoped<IBudgetRepository, BudgetRepository>();
+        services.AddScoped<IBudgetItemRepository, BudgetItemItemRepository>();
 
         return services;
     }

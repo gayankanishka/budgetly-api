@@ -17,6 +17,16 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
                 BudgetId = 1,
                 Amount = 25000,
                 UserId = "auth0|61d9c13ff98384007046a028"
+            },
+            new BudgetItem
+            {
+                Id = 2,
+                Name = "car",
+                TransactionCategoryId = 3,
+                Description = "My car expense budget",
+                BudgetId = 1,
+                Amount = 60000,
+                UserId = "auth0|61d9c13ff98384007046a028"
             });
     }
 }

@@ -3,9 +3,9 @@ using Budgetly.Domain.Entities;
 
 namespace Budgetly.Infrastructure.Persistence.Repositories;
 
-internal class BudgetRepository : GenericRepository<Budget>, IBudgetRepository
+internal class BudgetItemItemRepository : GenericRepository<BudgetItem>, IBudgetItemRepository
 {
-    public BudgetRepository(ApplicationDbContext context) : base(context)
+    public BudgetItemItemRepository(ApplicationDbContext context) : base(context)
     {
         if (context == null)
         {

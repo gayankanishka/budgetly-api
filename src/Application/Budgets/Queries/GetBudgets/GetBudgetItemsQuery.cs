@@ -5,6 +5,8 @@ using MediatR;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
-public class GetBudgetsQuery : QueryParameters, IRequest<PagedResponse<BudgetDto>>
+public class GetBudgetItemsQuery : IRequest<IEnumerable<BudgetItemDto>>
 {
+    public string? Name { get; set; }
+    public int? TransactionCategoryId { get; set; }
 }
