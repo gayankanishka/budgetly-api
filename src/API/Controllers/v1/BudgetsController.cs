@@ -1,5 +1,7 @@
 using System.Net.Mime;
 using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
+using Budgetly.Application.Budgets.Commands.DeleteBudgetItem;
+using Budgetly.Application.Budgets.Commands.UpdateBudgetItem;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
 using Budgetly.Domain.Dtos;
 using MediatR;
@@ -57,8 +59,16 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateAsync([FromRoute] int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateAsync([FromRoute] int id,
+    [FromBody] UpdateBudgetItemCommand command,
+    CancellationToken cancellationToken)
     {
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+        await _mediator.Send(command, cancellationToken);
         return NoContent();
     }
 
@@ -68,6 +78,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id, CancellationToken cancellationToken)
     {
+        await _mediator.Send(new DeleteBudgetItemCommand(id), cancellationToken);
         return NoContent();
     }
 }
