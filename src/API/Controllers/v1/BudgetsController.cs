@@ -3,6 +3,7 @@ using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 using Budgetly.Application.Budgets.Commands.DeleteBudgetItem;
 using Budgetly.Application.Budgets.Commands.UpdateBudgetItem;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Application.Budgets.Queries.GetCurrentBudgetStat;
 using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
 using MediatR;
@@ -38,7 +39,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<BudgetStatDto>> GetCurrentBudgetStatAsync(CancellationToken cancellationToken)
     {
-        return Ok();
+        return await _mediator.Send(new GetCurrentBudgetStatQuery(), cancellationToken);
     }
 
     [HttpPost]
