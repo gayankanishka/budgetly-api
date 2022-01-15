@@ -75,7 +75,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
         var exception = (NotFoundException)context.Exception;
 
-        var details = new ProblemDetails()
+        var details = new ProblemDetails
         {
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
             Title = "The specified resource was not found.",

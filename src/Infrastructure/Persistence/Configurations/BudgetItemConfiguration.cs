@@ -9,7 +9,7 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
     public void Configure(EntityTypeBuilder<BudgetItem> builder)
     {
         builder.HasData(
-            new BudgetItem()
+            new BudgetItem
             {
                 Id = 1,
                 Name = "Food",

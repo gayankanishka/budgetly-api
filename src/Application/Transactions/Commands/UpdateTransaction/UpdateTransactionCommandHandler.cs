@@ -8,13 +8,13 @@ namespace Budgetly.Application.Transactions.Commands.UpdateTransaction;
 
 public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransactionCommand>
 {
-    private readonly ITransactionRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionRepository _repository;
 
-    public UpdateTransactionCommandHandler(ITransactionRepository repository, IMapper mapper)
+    public UpdateTransactionCommandHandler(IMapper mapper, ITransactionRepository repository)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<Unit> Handle(UpdateTransactionCommand request, CancellationToken cancellationToken)

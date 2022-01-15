@@ -7,12 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Budgetly.Application;
 
 /// <summary>
-/// Dependency injection extension to configure Application layer services.
+///     Dependency injection extension to configure Application layer services.
 /// </summary>
 public static class DependencyInjection
 {
     /// <summary>
-    /// Configure Application layer services.
+    ///     Configure Application layer services.
     /// </summary>
     /// <param name="services"></param>
     /// <returns>The service collection.</returns>

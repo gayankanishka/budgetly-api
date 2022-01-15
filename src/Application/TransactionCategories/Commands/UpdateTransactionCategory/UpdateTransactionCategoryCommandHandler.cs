@@ -1,4 +1,3 @@
-using AutoMapper;
 using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
@@ -12,7 +11,7 @@ public class UpdateTransactionCategoryCommandHandler : IRequestHandler<UpdateTra
 
     public UpdateTransactionCategoryCommandHandler(ITransactionCategoryRepository repository)
     {
-        _repository = repository;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<Unit> Handle(UpdateTransactionCategoryCommand request, CancellationToken cancellationToken)

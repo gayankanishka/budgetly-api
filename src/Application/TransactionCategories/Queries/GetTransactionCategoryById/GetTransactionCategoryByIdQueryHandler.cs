@@ -10,13 +10,13 @@ namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCateg
 public class GetTransactionCategoryByIdQueryHandler : IRequestHandler<GetTransactionCategoryByIdQuery,
     TransactionCategoryDto>
 {
-    private readonly ITransactionCategoryRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionCategoryRepository _repository;
 
-    public GetTransactionCategoryByIdQueryHandler(ITransactionCategoryRepository repository, IMapper mapper)
+    public GetTransactionCategoryByIdQueryHandler(IMapper mapper, ITransactionCategoryRepository repository)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<TransactionCategoryDto> Handle(GetTransactionCategoryByIdQuery request,

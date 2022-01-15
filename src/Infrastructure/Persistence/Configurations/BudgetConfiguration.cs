@@ -9,7 +9,7 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
     public void Configure(EntityTypeBuilder<Budget> builder)
     {
         builder.HasData(
-            new Budget()
+            new Budget
             {
                 Id = 1,
                 Name = "January Budget",

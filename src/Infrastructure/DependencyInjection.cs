@@ -10,12 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Budgetly.Infrastructure;
 
 /// <summary>
-/// Dependency injection extension to configure Infrastructure layer services.
+///     Dependency injection extension to configure Infrastructure layer services.
 /// </summary>
 public static class DependencyInjection
 {
     /// <summary>
-    /// Configure Infrastructure layer services.
+    ///     Configure Infrastructure layer services.
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configuration"></param>

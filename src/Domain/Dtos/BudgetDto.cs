@@ -1,5 +1,3 @@
-using Budgetly.Domain.Entities;
-
 namespace Budgetly.Domain.Dtos;
 
 public class BudgetDto

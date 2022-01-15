@@ -7,5 +7,9 @@ internal class BudgetRepository : GenericRepository<Budget>, IBudgetRepository
 {
     public BudgetRepository(ApplicationDbContext context) : base(context)
     {
+        if (context == null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
     }
 }

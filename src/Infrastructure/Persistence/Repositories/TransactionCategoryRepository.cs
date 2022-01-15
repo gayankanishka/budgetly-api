@@ -7,5 +7,9 @@ internal class TransactionCategoryRepository : GenericRepository<TransactionCate
 {
     public TransactionCategoryRepository(ApplicationDbContext context) : base(context)
     {
+        if (context == null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
     }
 }

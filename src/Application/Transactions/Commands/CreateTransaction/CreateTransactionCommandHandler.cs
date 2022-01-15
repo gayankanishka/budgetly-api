@@ -8,13 +8,13 @@ namespace Budgetly.Application.Transactions.Commands.CreateTransaction;
 
 public class CreateTransactionCommandHandler : IRequestHandler<CreateTransactionCommand, TransactionDto>
 {
-    private readonly ITransactionRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionRepository _repository;
 
-    public CreateTransactionCommandHandler(ITransactionRepository repository, IMapper mapper)
+    public CreateTransactionCommandHandler(IMapper mapper, ITransactionRepository repository)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<TransactionDto> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)

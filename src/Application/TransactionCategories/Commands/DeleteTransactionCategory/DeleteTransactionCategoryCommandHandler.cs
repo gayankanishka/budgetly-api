@@ -11,7 +11,7 @@ public class DeleteTransactionCategoryCommandHandler : IRequestHandler<DeleteTra
 
     public DeleteTransactionCategoryCommandHandler(ITransactionCategoryRepository repository)
     {
-        _repository = repository;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<Unit> Handle(DeleteTransactionCategoryCommand request, CancellationToken cancellationToken)

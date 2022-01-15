@@ -5,10 +5,10 @@ namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCateg
 
 public class GetTransactionCategoryByIdQuery : IRequest<TransactionCategoryDto>
 {
-    public int Id { get; private set; }
-
     public GetTransactionCategoryByIdQuery(int id)
     {
         Id = id;
     }
+
+    public int Id { get; }
 }

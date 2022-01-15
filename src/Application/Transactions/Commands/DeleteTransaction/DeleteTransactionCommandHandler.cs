@@ -8,13 +8,13 @@ namespace Budgetly.Application.Transactions.Commands.DeleteTransaction;
 
 public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransactionCommand>
 {
-    private readonly ITransactionRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionRepository _repository;
 
-    public DeleteTransactionCommandHandler(ITransactionRepository repository, IMapper mapper)
+    public DeleteTransactionCommandHandler(IMapper mapper, ITransactionRepository repository)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<Unit> Handle(DeleteTransactionCommand request, CancellationToken cancellationToken)

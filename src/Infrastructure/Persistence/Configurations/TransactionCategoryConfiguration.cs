@@ -9,7 +9,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
     public void Configure(EntityTypeBuilder<TransactionCategory> builder)
     {
         builder.HasData(
-            new TransactionCategory()
+            new TransactionCategory
             {
                 Id = 1,
                 Name = "Food",
@@ -17,7 +17,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new TransactionCategory()
+            new TransactionCategory
             {
                 Id = 2,
                 Name = "Entertainment",
@@ -25,7 +25,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new TransactionCategory()
+            new TransactionCategory
             {
                 Id = 3,
                 Name = "Transportation",
@@ -33,7 +33,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new TransactionCategory()
+            new TransactionCategory
             {
                 Id = 4,
                 Name = "Utilities",
@@ -41,7 +41,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new TransactionCategory()
+            new TransactionCategory
             {
                 Id = 5,
                 Name = "Health",

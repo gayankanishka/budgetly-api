@@ -1,4 +1,3 @@
-using Budgetly.Domain.Entities;
 using Budgetly.Domain.Enums;
 
 namespace Budgetly.Domain.Dtos;

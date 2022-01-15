@@ -12,14 +12,14 @@ namespace Budgetly.Application.Transactions.Queries.GetTransactions;
 
 public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery, PagedResponse<TransactionDto>>
 {
-    private readonly ITransactionRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionRepository _repository;
     private readonly ICurrentUserService _user;
 
-    public GetTransactionsQueryHandler(ITransactionRepository repository, IMapper mapper, ICurrentUserService user)
+    public GetTransactionsQueryHandler(IMapper mapper, ITransactionRepository repository, ICurrentUserService user)
     {
-        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _user = user ?? throw new ArgumentNullException(nameof(user));
     }
 

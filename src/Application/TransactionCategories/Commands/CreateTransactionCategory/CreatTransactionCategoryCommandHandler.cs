@@ -9,13 +9,13 @@ namespace Budgetly.Application.TransactionCategories.Commands.CreateTransactionC
 public class CreatTransactionCategoryCommandHandler : IRequestHandler<CreatTransactionCategoryCommand,
     TransactionCategoryDto>
 {
-    private readonly ITransactionCategoryRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ITransactionCategoryRepository _repository;
 
-    public CreatTransactionCategoryCommandHandler(ITransactionCategoryRepository repository, IMapper mapper)
+    public CreatTransactionCategoryCommandHandler(IMapper mapper, ITransactionCategoryRepository repository)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<TransactionCategoryDto> Handle(CreatTransactionCategoryCommand request,

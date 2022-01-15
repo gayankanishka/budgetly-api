@@ -9,7 +9,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
         builder.HasData(
-            new Transaction()
+            new Transaction
             {
                 Id = 1,
                 Name = "Water bill",
@@ -18,7 +18,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 2,
                 Name = "Electricity bill",
@@ -27,7 +27,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 3,
                 Name = "Rent",
@@ -36,7 +36,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 1,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 4,
                 Name = "Groceries",
@@ -45,7 +45,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 2,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 5,
                 Name = "Car payment",
@@ -54,7 +54,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 6,
                 Name = "Car insurance",
@@ -63,7 +63,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 7,
                 Name = "Car gas",
@@ -72,7 +72,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 8,
                 Name = "Car service",
@@ -81,7 +81,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 9,
                 Name = "Car oil",
@@ -90,7 +90,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 10,
                 Name = "Car tires",
@@ -99,7 +99,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 11,
                 Name = "Car wash",
@@ -108,7 +108,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 12,
                 Name = "Car wax",
@@ -117,7 +117,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 13,
                 Name = "Car tire rotation",
@@ -126,7 +126,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 14,
                 Name = "Car engine check",
@@ -135,7 +135,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 15,
                 Name = "Car tire check",
@@ -144,7 +144,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 16,
                 Name = "Car oil change",
@@ -153,7 +153,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 17,
                 Name = "Car tire rotation",
@@ -162,7 +162,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 18,
                 Name = "Car engine check",
@@ -171,7 +171,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 19,
                 Name = "Car tire check",
@@ -180,7 +180,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 20,
                 Name = "Car oil change",
@@ -189,7 +189,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 21,
                 Name = "Car tire rotation",
@@ -198,7 +198,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
-            new Transaction()
+            new Transaction
             {
                 Id = 22,
                 Name = "Car engine check",

@@ -7,5 +7,9 @@ internal class TransactionRepository : GenericRepository<Transaction>, ITransact
 {
     public TransactionRepository(ApplicationDbContext context) : base(context)
     {
+        if (context == null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
     }
 }
