@@ -2,6 +2,7 @@ using System.Net.Mime;
 using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 using Budgetly.Application.Budgets.Commands.DeleteBudgetItem;
 using Budgetly.Application.Budgets.Commands.UpdateBudgetItem;
+using Budgetly.Application.Budgets.Queries.GetBudgetHistory;
 using Budgetly.Application.Budgets.Queries.GetBudgets;
 using Budgetly.Application.Budgets.Queries.GetCurrentBudgetStat;
 using Budgetly.Application.Common.Models;
@@ -47,44 +48,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IEnumerable<BudgetHistoryDto>> GetBudgetHistoryAsync(CancellationToken cancellationToken)
     {
-        return new List<BudgetHistoryDto>
-        {
-            new()
-            {
-                TargetExpense = 150000,
-                ActualExpense = 130000,
-                ActualIncome = 250000,
-                Date = new DateTime(2021, 9, 1)
-            },
-            new()
-            {
-                TargetExpense = 150000,
-                ActualExpense = 180000,
-                ActualIncome = 200000,
-                Date = new DateTime(2021, 10, 1)
-            },
-            new()
-            {
-                TargetExpense = 170000,
-                ActualExpense = 20000,
-                ActualIncome = 340000,
-                Date = new DateTime(2021, 11, 1)
-            },
-            new()
-            {
-                TargetExpense = 120000,
-                ActualExpense = 200000,
-                ActualIncome = 200000,
-                Date = new DateTime(2021, 12, 1)
-            },
-            new()
-            {
-                TargetExpense = 120000,
-                ActualExpense = 50000,
-                ActualIncome = 100000,
-                Date = new DateTime(2022, 01, 1)
-            }
-        };
+        return await _mediator.Send(new GetBudgetHistoryQuery(), cancellationToken);
     }
 
     [HttpPost]
