@@ -1,5 +1,7 @@
 using System.Reflection;
 using Budgetly.Application.Common.Interfaces;
+using Budgetly.Domain.Common;
+using Budgetly.Domain.Common.Interfaces;
 using Budgetly.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +10,19 @@ namespace Budgetly.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext
 {
     private readonly ICurrentUserService _user;
+    private readonly IDomainEventService _domainEventService;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user, IDomainEventService domainEventService)
         : base(options)
     {
-        _user = user;
+        if (options == null)
+        {
+            throw new ArgumentNullException(nameof(options));
+        }
+
+        _user = user ?? throw new ArgumentNullException(nameof(user));
+        _domainEventService = domainEventService;
+        _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
     }
 
     public DbSet<BudgetItem> BudgetItems { get; set; } = default!;
@@ -44,7 +54,26 @@ public class ApplicationDbContext : DbContext
                     break;
             }
         }
+        
+        var events = ChangeTracker.Entries<IHasDomainEvent>()
+            .Select(x => x.Entity.DomainEvents)
+            .SelectMany(x => x)
+            .Where(domainEvent => !domainEvent.IsPublished)
+            .ToArray();
 
-        return await base.SaveChangesAsync(cancellationToken);
+        var results = await base.SaveChangesAsync(cancellationToken);
+        
+        await DispatchEvents(events);
+
+        return results;
+    }
+    
+    private async Task DispatchEvents(DomainEvent[] events)
+    {
+        foreach (var @event in events)
+        {
+            @event.IsPublished = true;
+            await _domainEventService.Publish(@event);
+        }
     }
 }

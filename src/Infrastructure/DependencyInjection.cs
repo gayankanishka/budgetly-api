@@ -3,6 +3,7 @@ using Budgetly.Infrastructure.Persistence;
 using Budgetly.Infrastructure.Persistence.Imports;
 using Budgetly.Infrastructure.Persistence.Options;
 using Budgetly.Infrastructure.Persistence.Repositories;
+using Budgetly.Infrastructure.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,12 +43,14 @@ public static class DependencyInjection
 
         // TODO: GW | Npgsql confusion on mappings, lets keep this for now
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
-        services.SeedDatabase();
+        
+        services.AddScoped<IDomainEventService, DomainEventService>();
 
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddScoped<IBudgetItemRepository, BudgetItemItemRepository>();
+        
+        services.SeedDatabase();
 
         return services;
     }
