@@ -7,12 +7,6 @@ namespace Budgetly.Application.Common.Filters;
 
 public static class FilteringExtensions
 {
-    public static IQueryable<T> ForCurrentUser<T>(this IQueryable<T> query, string? userId)
-        where T : BaseEntity
-    {
-        return query.Where(w => w.UserId == userId);
-    }
-
     public static IQueryable<TEntity> ApplyFilters<TEntity, TQuery>(this IQueryable<TEntity> query, TQuery filters)
         where TEntity : BaseEntity
         where TQuery : IFilter

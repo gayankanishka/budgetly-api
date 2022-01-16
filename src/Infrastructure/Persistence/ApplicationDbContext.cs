@@ -9,7 +9,7 @@ namespace Budgetly.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    private readonly ICurrentUserService _user;
+    private readonly ICurrentUserService _currentUserService;
     private readonly IDomainEventService _domainEventService;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user, IDomainEventService domainEventService)
@@ -20,7 +20,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             throw new ArgumentNullException(nameof(options));
         }
 
-        _user = user ?? throw new ArgumentNullException(nameof(user));
+        _currentUserService = user ?? throw new ArgumentNullException(nameof(user));
         _domainEventService = domainEventService;
         _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
     }
@@ -32,6 +32,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        
+        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -43,13 +47,13 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedBy = _user.UserId;
+                    entry.Entity.CreatedBy = _currentUserService.UserId;
                     entry.Entity.Created = DateTimeOffset.UtcNow;
-                    entry.Entity.UserId = _user.UserId;
+                    entry.Entity.UserId = _currentUserService.UserId;
                     break;
 
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedBy = _user.UserId;
+                    entry.Entity.LastModifiedBy = _currentUserService.UserId;
                     entry.Entity.LastModified = DateTimeOffset.UtcNow;
                     break;
             }

@@ -1,4 +1,3 @@
-using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Events;
@@ -12,14 +11,11 @@ public class TransactionDeletedEventHandler : INotificationHandler<DomainEventNo
 {
     private readonly ILogger<TransactionDeletedEventHandler> _logger;
     private readonly IBudgetItemRepository _repository;
-    private readonly ICurrentUserService _currentUserService;
 
-    public TransactionDeletedEventHandler(ILogger<TransactionDeletedEventHandler> logger, IBudgetItemRepository repository,
-        ICurrentUserService currentUserService)
+    public TransactionDeletedEventHandler(ILogger<TransactionDeletedEventHandler> logger, IBudgetItemRepository repository)
     {
-        _logger = logger;
-        _repository = repository;
-        _currentUserService = currentUserService;
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task Handle(DomainEventNotification<TransactionDeletedEvent> notification,
@@ -30,7 +26,6 @@ public class TransactionDeletedEventHandler : INotificationHandler<DomainEventNo
         
         var budgetItem = await _repository.GetAll()
             .Include(x => x.Transactions)
-            .ForCurrentUser(_currentUserService.UserId)
             .Where(x => x.TransactionCategoryId == transaction.CategoryId)
             .FirstOrDefaultAsync(cancellationToken);
 

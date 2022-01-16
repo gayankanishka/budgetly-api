@@ -28,7 +28,6 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     {
         return await _repository.GetAll()
             .Include(x => x.Category)
-            .ForCurrentUser(_user.UserId)
             .ApplyFilters(request)
             .OrderByDescending(x => x.DateTime)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)

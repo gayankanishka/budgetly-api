@@ -14,13 +14,11 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
 {
     private readonly IMapper _mapper;
     private readonly IBudgetItemRepository _repository;
-    private readonly ICurrentUserService _currentUserService;
 
-    public CreateBudgetItemCommandHandler(IMapper mapper, IBudgetItemRepository repository, ICurrentUserService currentUserService)
+    public CreateBudgetItemCommandHandler(IMapper mapper, IBudgetItemRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-        _currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
     }
 
     public async Task<BudgetItemDto> Handle(CreateBudgetItemCommand request,
@@ -29,7 +27,6 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
         var budgetItem = _mapper.Map<BudgetItem>(request);
 
         var result = await _repository.GetAll()
-            .ForCurrentUser(_currentUserService.UserId)
             .Where(x => x.TransactionCategoryId == request.TransactionCategoryId)
             .AsNoTracking()
             .FirstOrDefaultAsync(cancellationToken);
