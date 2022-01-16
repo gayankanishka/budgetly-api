@@ -27,6 +27,7 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, Paged
             .ApplyFilters(request)
             .OrderByDescending(x => x.Name)
             .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking()
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

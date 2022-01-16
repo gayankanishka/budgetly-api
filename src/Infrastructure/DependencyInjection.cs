@@ -44,6 +44,8 @@ public static class DependencyInjection
         // TODO: GW | Npgsql confusion on mappings, lets keep this for now
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         
+        services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>() 
+                                                              ?? throw new InvalidOperationException());
         services.AddScoped<IDomainEventService, DomainEventService>();
 
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();

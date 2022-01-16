@@ -29,6 +29,7 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
 
         var targetExpense = _itemRepository.GetAll()
             .ForCurrentUser(_currentUserService.UserId)
+            .AsNoTracking()
             .Select(x => x.TargetExpense)
             .Sum();
 
@@ -41,6 +42,7 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
             .ForCurrentUser(_currentUserService.UserId)
             .Where(x => x.Type == Domain.Enums.TransactionTypes.Expense)
             .Where(x => x.DateTime >= startDate && x.DateTime <= endDate)
+            .AsNoTracking()
             .Select(x => x.Amount)
             .Sum();
 
@@ -48,6 +50,7 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
             .ForCurrentUser(_currentUserService.UserId)
             .Where(x => x.Type == Domain.Enums.TransactionTypes.Income)
             .Where(x => x.DateTime >= startDate && x.DateTime <= endDate)
+            .AsNoTracking()
             .Select(x => x.Amount)
             .Sum();
 

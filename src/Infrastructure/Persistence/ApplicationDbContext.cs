@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly ICurrentUserService _user;
     private readonly IDomainEventService _domainEventService;
@@ -25,9 +25,9 @@ public class ApplicationDbContext : DbContext
         _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
     }
 
-    public DbSet<BudgetItem> BudgetItems { get; set; } = default!;
-    public DbSet<TransactionCategory> TransactionCategories { get; set; } = default!;
-    public DbSet<Transaction> Transactions { get; set; } = default!;
+    public DbSet<BudgetItem> BudgetItems => Set<BudgetItem>();
+    public DbSet<TransactionCategory> TransactionCategories => Set<TransactionCategory>();
+    public DbSet<Transaction> Transactions => Set<Transaction>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

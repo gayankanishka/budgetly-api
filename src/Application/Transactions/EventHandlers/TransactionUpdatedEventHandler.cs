@@ -38,7 +38,6 @@ public class TransactionUpdatedEventHandler : INotificationHandler<DomainEventNo
         }
         
         budgetItem.ActualExpense = budgetItem.Transactions.Sum(x => x.Amount);
-
         await _repository.UpdateAsync(budgetItem, cancellationToken);
 
         _logger.LogInformation("----- Budgetly API Domain Event: {DomainEvent} updated budget item" +

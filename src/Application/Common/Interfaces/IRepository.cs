@@ -2,7 +2,7 @@ using Budgetly.Domain.Entities;
 
 namespace Budgetly.Application.Common.Interfaces;
 
-public interface IGenericRepository<T> where T : BaseEntity
+public interface IRepository<T> where T : BaseEntity
 {
     IQueryable<T> GetAll();
     Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken);

@@ -32,6 +32,7 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
             .ApplyFilters(request)
             .OrderByDescending(x => x.DateTime)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking()
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

@@ -6,6 +6,7 @@ using Budgetly.Application.Common.Mappings;
 using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.TransactionCategories.Queries.GetTransactionCategories;
 
@@ -32,6 +33,7 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
             .ApplyFilters(request)
             .OrderBy(x => x.Name)
             .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking()
             .ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
     }
 }

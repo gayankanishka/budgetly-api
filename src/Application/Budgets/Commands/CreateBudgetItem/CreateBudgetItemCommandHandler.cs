@@ -31,6 +31,7 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
         var result = await _repository.GetAll()
             .ForCurrentUser(_currentUserService.UserId)
             .Where(x => x.TransactionCategoryId == request.TransactionCategoryId)
+            .AsNoTracking()
             .FirstOrDefaultAsync(cancellationToken);
 
         if (result != null)
