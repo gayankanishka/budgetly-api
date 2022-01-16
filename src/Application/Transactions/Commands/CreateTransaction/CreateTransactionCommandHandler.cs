@@ -2,6 +2,7 @@ using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
+using Budgetly.Domain.Events;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Commands.CreateTransaction;
@@ -20,6 +21,8 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateTransaction
     public async Task<TransactionDto> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = _mapper.Map<Transaction>(request);
+        
+        transaction.DomainEvents.Add(new TransactionCreatedEvent(transaction));
 
         await _repository.AddAsync(transaction, cancellationToken);
         return _mapper.Map<TransactionDto>(transaction);
