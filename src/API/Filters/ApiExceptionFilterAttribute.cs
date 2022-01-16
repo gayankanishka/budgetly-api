@@ -16,7 +16,8 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             { typeof(ValidationException), HandleValidationException },
             { typeof(NotFoundException), HandleNotFoundException },
             { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
-            { typeof(ForbiddenAccessException), HandleForbiddenAccessException }
+            { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+            { typeof(AlreadyExistsException), HandleAlreadyExistsException }
         };
     }
 
@@ -134,6 +135,22 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         {
             StatusCode = StatusCodes.Status500InternalServerError
         };
+
+        context.ExceptionHandled = true;
+    }
+    
+    private void HandleAlreadyExistsException(ExceptionContext context)
+    {
+        var exception = (AlreadyExistsException)context.Exception;
+
+        var details = new ProblemDetails
+        {
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+            Title = "The specified resource already exists.",
+            Detail = exception.Message
+        };
+
+        context.Result = new BadRequestObjectResult(details);
 
         context.ExceptionHandled = true;
     }
