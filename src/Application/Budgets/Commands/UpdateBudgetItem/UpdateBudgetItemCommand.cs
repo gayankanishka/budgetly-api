@@ -10,4 +10,5 @@ public class UpdateBudgetItemCommand : IRequest
     public string? Description { get; set; }
     public int TransactionCategoryId { get; set; }
     public double TargetExpense { get; set; }
+    public double ActualExpense { get; set; }
 }
