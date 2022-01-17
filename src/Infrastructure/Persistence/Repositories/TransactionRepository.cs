@@ -8,12 +8,12 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal sealed class TransactionRepository : ITransactionRepository
 {
     private readonly IApplicationDbContext _context;
-    
+
     public TransactionRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    
+
     public IQueryable<Transaction> GetAll()
     {
         return _context.Transactions;
@@ -22,7 +22,7 @@ internal sealed class TransactionRepository : ITransactionRepository
     public async Task<Transaction?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await _context.Transactions
-                .FindAsync(new object?[] { id }, cancellationToken);
+            .FindAsync(new object?[] { id }, cancellationToken);
     }
 
     public async Task AddAsync(Transaction entity, CancellationToken cancellationToken)
@@ -53,7 +53,7 @@ internal sealed class TransactionRepository : ITransactionRepository
             .Select(x => x.Amount)
             .SumAsync(cancellationToken);
     }
-    
+
     public async Task<double> GetActualExpenseAsync(DateTimeOffset startDate, DateTimeOffset endDate,
         CancellationToken cancellationToken)
     {
@@ -64,5 +64,4 @@ internal sealed class TransactionRepository : ITransactionRepository
             .Select(x => x.Amount)
             .SumAsync(cancellationToken);
     }
-
 }

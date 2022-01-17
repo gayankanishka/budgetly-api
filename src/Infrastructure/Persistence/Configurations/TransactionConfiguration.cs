@@ -10,7 +10,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
         builder.Ignore(e => e.DomainEvents);
-        
+
         builder
             .Property(_ => _.Type)
             .HasConversion(

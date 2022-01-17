@@ -12,7 +12,8 @@ public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNo
     private readonly ILogger<TransactionCreatedEventHandler> _logger;
     private readonly IBudgetItemRepository _repository;
 
-    public TransactionCreatedEventHandler(ILogger<TransactionCreatedEventHandler> logger, IBudgetItemRepository repository)
+    public TransactionCreatedEventHandler(ILogger<TransactionCreatedEventHandler> logger,
+        IBudgetItemRepository repository)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -23,7 +24,7 @@ public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNo
     {
         var domainEvent = notification.DomainEvent;
         var transaction = domainEvent.Transaction;
-        
+
         var budgetItem = await _repository.GetAll()
             .Include(x => x.Transactions)
             .Where(x => x.TransactionCategoryId == transaction.CategoryId)
@@ -33,7 +34,7 @@ public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNo
         {
             return;
         }
-        
+
         budgetItem.Transactions.Add(transaction);
         budgetItem.ActualExpense = budgetItem.Transactions.Sum(x => x.Amount);
 

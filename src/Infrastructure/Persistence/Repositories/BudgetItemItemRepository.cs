@@ -7,12 +7,12 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal sealed class BudgetItemItemRepository : IBudgetItemRepository
 {
     private readonly IApplicationDbContext _context;
-    
+
     public BudgetItemItemRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    
+
     public IQueryable<BudgetItem> GetAll()
     {
         return _context.BudgetItems;
@@ -49,8 +49,9 @@ internal sealed class BudgetItemItemRepository : IBudgetItemRepository
             .Select(x => x.TargetExpense)
             .SumAsync(cancellationToken);
     }
-    
-    public async Task<bool> BudgetForTransactionCategoryExistsAsync(int transactionCategoryId, CancellationToken cancellationToken)
+
+    public async Task<bool> BudgetForTransactionCategoryExistsAsync(int transactionCategoryId,
+        CancellationToken cancellationToken)
     {
         return await GetAll()
             .AsNoTracking()

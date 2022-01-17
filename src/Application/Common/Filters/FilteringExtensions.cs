@@ -92,7 +92,7 @@ public static class FilteringExtensions
 
     private static IQueryable<BudgetItem> FilterBudgets(this IQueryable<BudgetItem> query, GetBudgetItemsQuery filters)
     {
-        if(filters.Exceeded != null)
+        if (filters.Exceeded != null)
         {
             if (filters.Exceeded.HasValue && filters.Exceeded.Value)
             {
@@ -104,10 +104,10 @@ public static class FilteringExtensions
             }
         }
 
-        if(filters.TransactionCategoryId != null)
+        if (filters.TransactionCategoryId != null)
         {
             query = query.Where(x =>
-            x.TransactionCategoryId == filters.TransactionCategoryId);
+                x.TransactionCategoryId == filters.TransactionCategoryId);
         }
 
         return query;

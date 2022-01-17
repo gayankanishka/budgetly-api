@@ -138,7 +138,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 
         context.ExceptionHandled = true;
     }
-    
+
     private void HandleAlreadyExistsException(ExceptionContext context)
     {
         var exception = (AlreadyExistsException)context.Exception;

@@ -7,12 +7,12 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal sealed class TransactionCategoryRepository : ITransactionCategoryRepository
 {
     private readonly IApplicationDbContext _context;
-    
+
     public TransactionCategoryRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    
+
     public IQueryable<TransactionCategory> GetAll()
     {
         return _context.TransactionCategories;

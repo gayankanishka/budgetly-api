@@ -4,6 +4,7 @@ using Budgetly.Domain.Dtos;
 using MediatR;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
+
 public class GetBudgetItemsQuery : QueryParameters, IRequest<PagedResponse<BudgetItemDto>>
 {
     // TODO: KA | Apply strategy pattern

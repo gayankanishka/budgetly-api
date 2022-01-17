@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Budgets.Queries.GetBudgets;
+
 public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
 {
     private readonly IMapper _mapper;
@@ -20,7 +21,8 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, Paged
         _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
     }
 
-    public async Task<PagedResponse<BudgetItemDto>> Handle(GetBudgetItemsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResponse<BudgetItemDto>> Handle(GetBudgetItemsQuery request,
+        CancellationToken cancellationToken)
     {
         return await _itemRepository.GetAll()
             .Include(x => x.TransactionCategory)

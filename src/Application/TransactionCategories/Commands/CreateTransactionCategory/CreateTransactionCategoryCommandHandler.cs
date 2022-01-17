@@ -26,7 +26,7 @@ public class CreateTransactionCategoryCommandHandler : IRequestHandler<CreateTra
         {
             throw new AlreadyExistsException($"Transaction Category already exists with name: {request.Name}");
         }
-        
+
         var transactionCategory = _mapper.Map<TransactionCategory>(request);
         await _repository.AddAsync(transactionCategory, cancellationToken);
 

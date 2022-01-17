@@ -12,7 +12,8 @@ public class TransactionDeletedEventHandler : INotificationHandler<DomainEventNo
     private readonly ILogger<TransactionDeletedEventHandler> _logger;
     private readonly IBudgetItemRepository _repository;
 
-    public TransactionDeletedEventHandler(ILogger<TransactionDeletedEventHandler> logger, IBudgetItemRepository repository)
+    public TransactionDeletedEventHandler(ILogger<TransactionDeletedEventHandler> logger,
+        IBudgetItemRepository repository)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -23,7 +24,7 @@ public class TransactionDeletedEventHandler : INotificationHandler<DomainEventNo
     {
         var domainEvent = notification.DomainEvent;
         var transaction = domainEvent.Transaction;
-        
+
         var budgetItem = await _repository.GetAll()
             .Include(x => x.Transactions)
             .Where(x => x.TransactionCategoryId == transaction.CategoryId)
@@ -33,7 +34,7 @@ public class TransactionDeletedEventHandler : INotificationHandler<DomainEventNo
         {
             return;
         }
-        
+
         budgetItem.ActualExpense = budgetItem.Transactions.Sum(x => x.Amount);
 
         await _repository.UpdateAsync(budgetItem, cancellationToken);

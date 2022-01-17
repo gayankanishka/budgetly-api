@@ -12,7 +12,7 @@ public class AlreadyExistsException : Exception
     }
 
     public AlreadyExistsException(string message, Exception innerException)
-    : base(message, innerException)
+        : base(message, innerException)
     {
     }
 

@@ -11,12 +11,12 @@ public class DateTimeService : IDateTimeService
     ///     Datetime offset of the current UTC time.
     /// </summary>
     public DateTimeOffset UtcNow => DateTimeOffset.UtcNow;
-    
+
     /// <summary>
     ///     First day of the current month.
     /// </summary>
     public DateTimeOffset FirstDayOfCurrentMonth => new DateTime(UtcNow.Year, UtcNow.Month, 1);
-    
+
     /// <summary>
     ///     Last day of the current month.
     /// </summary>

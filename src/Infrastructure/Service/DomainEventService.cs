@@ -16,13 +16,13 @@ public class DomainEventService : IDomainEventService
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
-    
+
     public async Task Publish(DomainEvent domainEvent)
     {
         _logger.LogInformation("Publishing domain event. Event - {event}", domainEvent.GetType().Name);
         await _mediator.Publish(GetNotificationCorrespondingToDomainEvent(domainEvent));
     }
-    
+
     private INotification GetNotificationCorrespondingToDomainEvent(DomainEvent domainEvent)
     {
         return (INotification)Activator.CreateInstance(

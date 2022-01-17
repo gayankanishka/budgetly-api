@@ -14,7 +14,7 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
 {
     private readonly IMapper _mapper;
     private readonly ITransactionRepository _repository;
-    
+
     public GetTransactionsQueryHandler(IMapper mapper, ITransactionRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

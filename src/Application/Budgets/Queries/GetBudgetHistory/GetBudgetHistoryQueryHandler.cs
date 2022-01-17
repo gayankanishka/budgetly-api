@@ -13,10 +13,11 @@ public class GetBudgetHistoryQueryHandler : IRequestHandler<GetBudgetHistoryQuer
         _repository = repository;
     }
 
-    public async Task<IEnumerable<BudgetHistoryDto>> Handle(GetBudgetHistoryQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<BudgetHistoryDto>> Handle(GetBudgetHistoryQuery request,
+        CancellationToken cancellationToken)
     {
         // TODO: remove below once implemented properly
-        
+
         return new List<BudgetHistoryDto>
         {
             new()

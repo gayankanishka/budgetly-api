@@ -20,16 +20,18 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
     public async Task<int> Handle(CreateBudgetItemCommand request,
         CancellationToken cancellationToken)
     {
-        var exists = await _repository.BudgetForTransactionCategoryExistsAsync(request.TransactionCategoryId, cancellationToken);
-        
+        var exists =
+            await _repository.BudgetForTransactionCategoryExistsAsync(request.TransactionCategoryId, cancellationToken);
+
         if (exists)
         {
-            throw new AlreadyExistsException($"Budget Item already exists with transactionCategoryId: {request.TransactionCategoryId}");
+            throw new AlreadyExistsException(
+                $"Budget Item already exists with transactionCategoryId: {request.TransactionCategoryId}");
         }
-        
+
         var budgetItem = _mapper.Map<BudgetItem>(request);
         await _repository.AddAsync(budgetItem, cancellationToken);
-        
+
         return budgetItem.Id;
     }
 }

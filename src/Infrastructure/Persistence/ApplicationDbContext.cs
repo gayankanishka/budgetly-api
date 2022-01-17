@@ -35,8 +35,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
-        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o => 
+
+        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o =>
             o.UserId == _currentUserService.UserId || o.IsPreset);
         modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
         modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
@@ -62,7 +62,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                     break;
             }
         }
-        
+
         var events = ChangeTracker.Entries<IHasDomainEvent>()
             .Select(x => x.Entity.DomainEvents)
             .SelectMany(x => x)
@@ -70,12 +70,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             .ToArray();
 
         var results = await base.SaveChangesAsync(cancellationToken);
-        
+
         await DispatchEvents(events);
 
         return results;
     }
-    
+
     private async Task DispatchEvents(DomainEvent[] events)
     {
         foreach (var @event in events)

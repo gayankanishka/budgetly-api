@@ -26,7 +26,7 @@ public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransaction
         {
             throw new NotFoundException(nameof(Transaction), request.Id);
         }
-        
+
         transaction.DomainEvents.Add(new TransactionDeletedEvent(transaction));
 
         await _repository.DeleteAsync(transaction, cancellationToken);

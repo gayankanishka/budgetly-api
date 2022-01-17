@@ -15,7 +15,7 @@ public class UpdateBudgetItemCommandValidator : AbstractValidator<UpdateBudgetIt
             .WithMessage("Name must be at least 3 characters long")
             .MaximumLength(50)
             .WithMessage("Name must be less than 50 characters");
-        
+
         RuleFor(x => x.Description)
             .MaximumLength(250)
             .WithMessage("Description must be less than 250 characters");

@@ -21,10 +21,10 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateTransaction
     public async Task<int> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = _mapper.Map<Transaction>(request);
-        
+
         transaction.DomainEvents.Add(new TransactionCreatedEvent(transaction));
         await _repository.AddAsync(transaction, cancellationToken);
-        
+
         return transaction.Id;
     }
 }

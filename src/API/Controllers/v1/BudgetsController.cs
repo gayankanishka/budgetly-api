@@ -30,7 +30,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<PagedResponse<BudgetItemDto>>> GetAllAsync(
-            [FromQuery] GetBudgetItemsQuery query, CancellationToken cancellationToken)
+        [FromQuery] GetBudgetItemsQuery query, CancellationToken cancellationToken)
     {
         return await _mediator.Send(query, cancellationToken);
     }
@@ -42,7 +42,7 @@ public class BudgetsController : ControllerBase
     {
         return await _mediator.Send(new GetCurrentBudgetStatQuery(), cancellationToken);
     }
-    
+
     [HttpGet("history")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -57,7 +57,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<int>> CreateAsync([FromBody] CreateBudgetItemCommand command,
-    CancellationToken cancellationToken)
+        CancellationToken cancellationToken)
     {
         var budgetItemId = await _mediator.Send(command, cancellationToken);
 
@@ -71,8 +71,8 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateAsync([FromRoute] int id,
-    [FromBody] UpdateBudgetItemCommand command,
-    CancellationToken cancellationToken)
+        [FromBody] UpdateBudgetItemCommand command,
+        CancellationToken cancellationToken)
     {
         if (id != command.Id)
         {

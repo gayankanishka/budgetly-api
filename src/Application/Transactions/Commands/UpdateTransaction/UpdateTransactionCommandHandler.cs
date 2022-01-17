@@ -34,7 +34,7 @@ public class UpdateTransactionCommandHandler : IRequestHandler<UpdateTransaction
         transaction.Note = request.Note;
         transaction.CategoryId = request.CategoryId;
         transaction.IsRecurring = request.IsRecurring;
-        
+
         transaction.DomainEvents.Add(new TransactionUpdatedEvent(transaction));
 
         await _repository.UpdateAsync(transaction, cancellationToken);
