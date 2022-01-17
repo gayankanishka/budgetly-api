@@ -17,11 +17,11 @@ namespace Budgetly.API.Controllers.v1;
 [Produces(MediaTypeNames.Application.Json)]
 [Route("api/v1/[controller]")]
 [Authorize]
-public class BudgetsController : ControllerBase
+public class BudgetController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public BudgetsController(IMediator mediator)
+    public BudgetController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
