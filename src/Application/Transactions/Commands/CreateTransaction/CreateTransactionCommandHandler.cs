@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Budgetly.Application.Transactions.Commands.CreateTransaction;
 
-public class CreateTransactionCommandHandler : IRequestHandler<CreateTransactionCommand, TransactionDto>
+public class CreateTransactionCommandHandler : IRequestHandler<CreateTransactionCommand, int>
 {
     private readonly IMapper _mapper;
     private readonly ITransactionRepository _repository;
@@ -18,13 +18,13 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateTransaction
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<TransactionDto> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)
     {
         var transaction = _mapper.Map<Transaction>(request);
         
         transaction.DomainEvents.Add(new TransactionCreatedEvent(transaction));
-
         await _repository.AddAsync(transaction, cancellationToken);
-        return _mapper.Map<TransactionDto>(transaction);
+        
+        return transaction.Id;
     }
 }

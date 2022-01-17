@@ -7,6 +7,7 @@ namespace Budgetly.Application.Common.Filters;
 
 public static class FilteringExtensions
 {
+    // TODO: Add strategy patter 2
     public static IQueryable<TEntity> ApplyFilters<TEntity, TQuery>(this IQueryable<TEntity> query, TQuery filters)
         where TEntity : BaseEntity
         where TQuery : IFilter

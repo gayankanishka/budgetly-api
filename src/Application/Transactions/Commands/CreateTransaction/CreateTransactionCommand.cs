@@ -1,10 +1,9 @@
-using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Enums;
 using MediatR;
 
 namespace Budgetly.Application.Transactions.Commands.CreateTransaction;
 
-public class CreateTransactionCommand : IRequest<TransactionDto>
+public class CreateTransactionCommand : IRequest<int>
 {
     public string Name { get; set; }
     public double Amount { get; set; }

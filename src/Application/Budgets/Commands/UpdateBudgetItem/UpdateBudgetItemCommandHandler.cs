@@ -30,10 +30,8 @@ public class UpdateBudgetItemCommandHandler : IRequestHandler<UpdateBudgetItemCo
         budget.Description = request.Description;
         budget.TransactionCategoryId = request.TransactionCategoryId;
         budget.TargetExpense = request.TargetExpense;
-        budget.ActualExpense = request.ActualExpense;
 
-
-    await _repository.UpdateAsync(budget, cancellationToken);
+        await _repository.UpdateAsync(budget, cancellationToken);
 
         return Unit.Value;
     }

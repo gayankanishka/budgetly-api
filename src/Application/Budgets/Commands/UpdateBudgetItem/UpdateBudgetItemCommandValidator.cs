@@ -15,6 +15,7 @@ public class UpdateBudgetItemCommandValidator : AbstractValidator<UpdateBudgetIt
             .WithMessage("Name must be at least 3 characters long")
             .MaximumLength(50)
             .WithMessage("Name must be less than 50 characters");
+        
         RuleFor(x => x.Description)
             .MaximumLength(250)
             .WithMessage("Description must be less than 250 characters");
@@ -24,7 +25,7 @@ public class UpdateBudgetItemCommandValidator : AbstractValidator<UpdateBudgetIt
             .WithMessage("CategoryId must be a valid value");
 
         RuleFor(x => x.TargetExpense)
-            .NotNull()
-            .WithMessage("TargetExpense is required");
+            .GreaterThan(0)
+            .WithMessage("TargetExpense is required and must be grater than or equal to 0");
     }
 }

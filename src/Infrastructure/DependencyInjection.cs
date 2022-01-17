@@ -27,6 +27,7 @@ public static class DependencyInjection
         var databaseOptions = configuration.GetSection(DatabaseOptions.Database)
             .Get<DatabaseOptions>();
 
+        // TODO: GK | Implement factory pattern to create a database context.
         if (databaseOptions.UseInMemoryDatabase)
         {
             services.AddDbContext<ApplicationDbContext>(_ =>

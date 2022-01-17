@@ -56,12 +56,12 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<BudgetItemDto>> CreateAsync([FromBody] CreateBudgetItemCommand command,
+    public async Task<ActionResult<int>> CreateAsync([FromBody] CreateBudgetItemCommand command,
     CancellationToken cancellationToken)
     {
-        var transaction = await _mediator.Send(command, cancellationToken);
+        var budgetItemId = await _mediator.Send(command, cancellationToken);
 
-        return Created(string.Empty, transaction);
+        return Created(string.Empty, budgetItemId);
     }
 
     [HttpPut("{id:int}")]

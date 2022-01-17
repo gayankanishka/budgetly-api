@@ -14,13 +14,11 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
 {
     private readonly IMapper _mapper;
     private readonly ITransactionRepository _repository;
-    private readonly ICurrentUserService _user;
-
-    public GetTransactionsQueryHandler(IMapper mapper, ITransactionRepository repository, ICurrentUserService user)
+    
+    public GetTransactionsQueryHandler(IMapper mapper, ITransactionRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-        _user = user ?? throw new ArgumentNullException(nameof(user));
     }
 
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,

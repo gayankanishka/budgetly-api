@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Budgetly.Application.TransactionCategories.Commands.CreateTransactionCategory;
 
-public class CreateTransactionCategoryCommandValidator : AbstractValidator<CreatTransactionCategoryCommand>
+public class CreateTransactionCategoryCommandValidator : AbstractValidator<CreateTransactionCategoryCommand>
 {
     public CreateTransactionCategoryCommandValidator()
     {

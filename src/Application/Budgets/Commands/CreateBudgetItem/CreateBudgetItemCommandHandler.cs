@@ -1,16 +1,12 @@
 using AutoMapper;
 using Budgetly.Application.Common.Exceptions;
-using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 
-public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCommand,
-    BudgetItemDto>
+public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCommand, int>
 {
     private readonly IMapper _mapper;
     private readonly IBudgetItemRepository _repository;
@@ -21,22 +17,19 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<BudgetItemDto> Handle(CreateBudgetItemCommand request,
+    public async Task<int> Handle(CreateBudgetItemCommand request,
         CancellationToken cancellationToken)
     {
-        var budgetItem = _mapper.Map<BudgetItem>(request);
-
-        var result = await _repository.GetAll()
-            .Where(x => x.TransactionCategoryId == request.TransactionCategoryId)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(cancellationToken);
-
-        if (result != null)
+        var exists = await _repository.BudgetForTransactionCategoryExistsAsync(request.TransactionCategoryId, cancellationToken);
+        
+        if (exists)
         {
-            throw new AlreadyExistsException($"Budget Item already exists with transactionCategoryId: {request.TransactionCategoryId} categoryId");
+            throw new AlreadyExistsException($"Budget Item already exists with transactionCategoryId: {request.TransactionCategoryId}");
         }
-
+        
+        var budgetItem = _mapper.Map<BudgetItem>(request);
         await _repository.AddAsync(budgetItem, cancellationToken);
-        return _mapper.Map<BudgetItemDto>(budgetItem);
+        
+        return budgetItem.Id;
     }
 }

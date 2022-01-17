@@ -16,12 +16,12 @@ public class CreateBudgetItemCommandValidator : AbstractValidator<CreateBudgetIt
             .MaximumLength(200)
             .WithMessage("Description must be less than 200 characters");
 
-        RuleFor(x => x.TargetExpense)
-            .NotNull()
-            .WithMessage("TargetExpense is required");
-
         RuleFor(x => x.TransactionCategoryId)
             .NotNull()
             .WithMessage("CategoryId is required");
+        
+        RuleFor(x => x.TargetExpense)
+            .GreaterThan(0)
+            .WithMessage("TargetExpense is required and must be grater than or equal to 0");
     }
 }

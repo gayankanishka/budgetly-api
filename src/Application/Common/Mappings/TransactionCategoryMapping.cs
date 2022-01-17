@@ -10,6 +10,6 @@ public class TransactionCategoryMapping : Profile
     public TransactionCategoryMapping()
     {
         CreateMap<TransactionCategory, TransactionCategoryDto>();
-        CreateMap<CreatTransactionCategoryCommand, TransactionCategory>();
+        CreateMap<CreateTransactionCategoryCommand, TransactionCategory>();
     }
 }

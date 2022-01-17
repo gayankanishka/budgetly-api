@@ -15,21 +15,17 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
 {
     private readonly IMapper _mapper;
     private readonly ITransactionCategoryRepository _repository;
-    private readonly ICurrentUserService _user;
 
-    public GetTransactionCategoriesQueryHandler(IMapper mapper, ITransactionCategoryRepository repository,
-        ICurrentUserService user)
+    public GetTransactionCategoriesQueryHandler(IMapper mapper, ITransactionCategoryRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-        _user = user ?? throw new ArgumentNullException(nameof(user));
     }
 
     public async Task<PagedResponse<TransactionCategoryDto>> Handle(GetTransactionCategoriesQuery request,
         CancellationToken cancellationToken)
     {
         return await _repository.GetAll()
-            .Where(x => x.UserId == _user.UserId || x.IsPreset == true)
             .ApplyFilters(request)
             .OrderBy(x => x.Name)
             .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)

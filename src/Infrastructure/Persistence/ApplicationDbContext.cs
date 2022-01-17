@@ -36,7 +36,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         
-        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o => 
+            o.UserId == _currentUserService.UserId || o.IsPreset);
         modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
         modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
 
