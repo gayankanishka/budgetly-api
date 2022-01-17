@@ -1,5 +1,6 @@
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Infrastructure.Persistence;
+using Budgetly.Infrastructure.Persistence.Factories;
 using Budgetly.Infrastructure.Persistence.Imports;
 using Budgetly.Infrastructure.Persistence.Options;
 using Budgetly.Infrastructure.Persistence.Providers;
@@ -24,11 +25,14 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         IConfiguration configuration)
     {
-        var databaseOptions = configuration.GetSection(DatabaseOptions.Database)
-            .Get<DatabaseOptions>();
+        var databaseOptions = configuration.GetSection(PersistenceOptions.Persistence)
+            .Get<PersistenceOptions>();
 
         services.AddDbContext<ApplicationDbContext>(options => 
-            DatabaseProviderFactory.GetProvider(options, databaseOptions));
+           AbstractPersistenceFactory<IDatabaseProvider>
+               .CreateFactory()
+               .GetProvider(databaseOptions)
+               .Build(options, databaseOptions));
         
         services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>()
                                                               ?? throw new InvalidOperationException());

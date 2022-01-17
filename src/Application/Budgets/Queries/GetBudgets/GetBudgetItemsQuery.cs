@@ -7,7 +7,6 @@ namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
 public class GetBudgetItemsQuery : QueryParameters, IRequest<PagedResponse<BudgetItemDto>>
 {
-    // TODO: KA | Apply strategy pattern
     public bool? Exceeded { get; set; }
     public int? TransactionCategoryId { get; set; }
 }

@@ -1,4 +1,4 @@
-namespace Budgetly.Infrastructure.Persistence.Providers;
+namespace Budgetly.Infrastructure.Persistence.Enums;
 
 public enum DataBaseProviderTypes
 {
