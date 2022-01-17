@@ -2,9 +2,9 @@ using Budgetly.Application.Common.Interfaces;
 using Budgetly.Infrastructure.Persistence;
 using Budgetly.Infrastructure.Persistence.Imports;
 using Budgetly.Infrastructure.Persistence.Options;
+using Budgetly.Infrastructure.Persistence.Providers;
 using Budgetly.Infrastructure.Persistence.Repositories;
 using Budgetly.Infrastructure.Service;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,24 +27,9 @@ public static class DependencyInjection
         var databaseOptions = configuration.GetSection(DatabaseOptions.Database)
             .Get<DatabaseOptions>();
 
-        // TODO: GK | Implement factory pattern to create a database context.
-        if (databaseOptions.UseInMemoryDatabase)
-        {
-            services.AddDbContext<ApplicationDbContext>(_ =>
-                _.UseInMemoryDatabase("BudgetlyDb"));
-        }
-        else
-        {
-            services.AddDbContext<ApplicationDbContext>(_ =>
-                _.UseNpgsql(
-                    databaseOptions.ConnectionString,
-                    a =>
-                        a.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-        }
-
-        // TODO: GW | Npgsql confusion on mappings, lets keep this for now
-        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
+        services.AddDbContext<ApplicationDbContext>(options => 
+            DatabaseProviderFactory.GetProvider(options, databaseOptions));
+        
         services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>()
                                                               ?? throw new InvalidOperationException());
         services.AddScoped<IDomainEventService, DomainEventService>();
