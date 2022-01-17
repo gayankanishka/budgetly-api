@@ -8,25 +8,26 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
 {
     private readonly IBudgetItemRepository _itemRepository;
     private readonly ITransactionRepository _transactionRepository;
+    private readonly IDateTimeService _dateTimeService;
 
-    public GetCurrentBudgetStatQueryHandler(IBudgetItemRepository itemRepository, ITransactionRepository transactionRepository)
+    public GetCurrentBudgetStatQueryHandler(IBudgetItemRepository itemRepository, ITransactionRepository transactionRepository,
+        IDateTimeService dateTimeService)
     {
         _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
         _transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
+        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
     public async Task<BudgetStatDto> Handle(GetCurrentBudgetStatQuery request, CancellationToken cancellationToken)
     {
-
         var targetExpense = _itemRepository.GetAll()
             .AsNoTracking()
             .Select(x => x.TargetExpense)
             .Sum();
 
-        var startDate = new DateTime(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month, 1);
+        var startDate = _dateTimeService.FirstDayOfCurrentMonth;
 
-        var endDate = new DateTime(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month,
-            DateTime.DaysInMonth(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month));
+        var endDate = _dateTimeService.LastDayOfCurrentMonth;
 
         var actualExpense = _transactionRepository.GetAll()
             .Where(x => x.Type == Domain.Enums.TransactionTypes.Expense)

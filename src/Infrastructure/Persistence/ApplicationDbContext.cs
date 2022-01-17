@@ -11,8 +11,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IDomainEventService _domainEventService;
+    private readonly IDateTimeService _dateTimeService;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user, IDomainEventService domainEventService)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user,
+        IDomainEventService domainEventService, IDateTimeService dateTimeService)
         : base(options)
     {
         if (options == null)
@@ -23,6 +25,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         _currentUserService = user ?? throw new ArgumentNullException(nameof(user));
         _domainEventService = domainEventService;
         _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
+        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
     public DbSet<BudgetItem> BudgetItems => Set<BudgetItem>();
@@ -48,13 +51,13 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             {
                 case EntityState.Added:
                     entry.Entity.CreatedBy = _currentUserService.UserId;
-                    entry.Entity.Created = DateTimeOffset.UtcNow;
+                    entry.Entity.Created = _dateTimeService.UtcNow;
                     entry.Entity.UserId = _currentUserService.UserId;
                     break;
 
                 case EntityState.Modified:
                     entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                    entry.Entity.LastModified = DateTimeOffset.UtcNow;
+                    entry.Entity.LastModified = _dateTimeService.UtcNow;
                     break;
             }
         }

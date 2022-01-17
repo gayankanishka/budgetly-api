@@ -51,6 +51,8 @@ public static class DependencyInjection
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddScoped<IBudgetItemRepository, BudgetItemItemRepository>();
+
+        services.AddTransient<IDateTimeService, DateTimeService>();
         
         services.SeedDatabase();
 
