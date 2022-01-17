@@ -12,13 +12,13 @@ namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
 public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
 {
-    private readonly IMapper _mapper;
     private readonly IBudgetItemRepository _itemRepository;
+    private readonly IMapper _mapper;
 
-    public GetBudgetsQueryHandler(IMapper mapper, IBudgetItemRepository itemRepository)
+    public GetBudgetsQueryHandler(IBudgetItemRepository itemRepository, IMapper mapper)
     {
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public async Task<PagedResponse<BudgetItemDto>> Handle(GetBudgetItemsQuery request,

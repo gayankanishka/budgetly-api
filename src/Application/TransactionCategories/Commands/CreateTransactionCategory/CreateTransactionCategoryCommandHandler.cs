@@ -1,7 +1,6 @@
 using AutoMapper;
 using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 using MediatR;
 

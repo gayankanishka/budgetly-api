@@ -7,17 +7,17 @@ namespace Budgetly.Application.Budgets.Queries.GetCurrentBudgetStat;
 public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudgetStatQuery, BudgetStatDto>
 {
     private readonly IBudgetItemRepository _budgetItemRepository;
-    private readonly ITransactionRepository _transactionRepository;
     private readonly IDateTimeService _dateTimeService;
+    private readonly ITransactionRepository _transactionRepository;
 
     public GetCurrentBudgetStatQueryHandler(IBudgetItemRepository itemRepository,
-        ITransactionRepository transactionRepository,
-        IDateTimeService dateTimeService)
+        IDateTimeService dateTimeService,
+        ITransactionRepository transactionRepository)
     {
         _budgetItemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
+        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
         _transactionRepository =
             transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
-        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
     public async Task<BudgetStatDto> Handle(GetCurrentBudgetStatQuery request, CancellationToken cancellationToken)
@@ -29,7 +29,7 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
         var actualIncome = await _transactionRepository.GetActualIncomeAsync(startDate, endDate, cancellationToken);
         var actualExpense = await _transactionRepository.GetActualExpenseAsync(startDate, endDate, cancellationToken);
 
-        return new BudgetStatDto()
+        return new BudgetStatDto
         {
             TargetExpense = targetExpense,
             ActualExpense = actualExpense,

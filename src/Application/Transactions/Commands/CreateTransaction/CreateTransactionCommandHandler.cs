@@ -1,6 +1,5 @@
 using AutoMapper;
 using Budgetly.Application.Common.Interfaces;
-using Budgetly.Domain.Dtos;
 using Budgetly.Domain.Entities;
 using Budgetly.Domain.Events;
 using MediatR;

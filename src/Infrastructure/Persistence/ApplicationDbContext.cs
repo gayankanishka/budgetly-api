@@ -10,11 +10,11 @@ namespace Budgetly.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly ICurrentUserService _currentUserService;
-    private readonly IDomainEventService _domainEventService;
     private readonly IDateTimeService _dateTimeService;
+    private readonly IDomainEventService _domainEventService;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService user,
-        IDomainEventService domainEventService, IDateTimeService dateTimeService)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService,
+        IDateTimeService dateTimeService, IDomainEventService domainEventService)
         : base(options)
     {
         if (options == null)
@@ -22,27 +22,14 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             throw new ArgumentNullException(nameof(options));
         }
 
-        _currentUserService = user ?? throw new ArgumentNullException(nameof(user));
-        _domainEventService = domainEventService;
-        _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
+        _currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
         _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
+        _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
     }
 
     public DbSet<BudgetItem> BudgetItems => Set<BudgetItem>();
     public DbSet<TransactionCategory> TransactionCategories => Set<TransactionCategory>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o =>
-            o.UserId == _currentUserService.UserId || o.IsPreset);
-        modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
-        modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
-
-        base.OnModelCreating(modelBuilder);
-    }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
@@ -53,7 +40,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 case EntityState.Added:
                     entry.Entity.CreatedBy = _currentUserService.UserId;
                     entry.Entity.Created = _dateTimeService.UtcNow;
-                    entry.Entity.UserId = _currentUserService.UserId;
+                    entry.Entity.UserId = _currentUserService.UserId ?? string.Empty;
                     break;
 
                 case EntityState.Modified:
@@ -74,6 +61,18 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         await DispatchEvents(events);
 
         return results;
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o =>
+            o.UserId == _currentUserService.UserId || o.IsPreset);
+        modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+
+        base.OnModelCreating(modelBuilder);
     }
 
     private async Task DispatchEvents(DomainEvent[] events)

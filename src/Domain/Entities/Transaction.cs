@@ -13,7 +13,7 @@ public class Transaction : BaseEntity, IHasDomainEvent
     public int CategoryId { get; set; }
     public TransactionCategory Category { get; set; }
     public bool IsRecurring { get; set; }
-    public List<DomainEvent> DomainEvents { get; set; } = new();
     public int? BudgetItemId { get; set; }
     public BudgetItem BudgetItem { get; set; }
+    public List<DomainEvent> DomainEvents { get; set; } = new();
 }
