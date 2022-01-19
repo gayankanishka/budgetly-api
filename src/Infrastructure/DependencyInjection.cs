@@ -43,6 +43,7 @@ public static class DependencyInjection
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddScoped<IBudgetItemRepository, BudgetItemItemRepository>();
+        services.AddScoped<IBudgetHistoryRepository, BudgetHistoryRepository>();
 
         services.AddTransient<IDateTimeService, DateTimeService>();
 

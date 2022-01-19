@@ -8,5 +8,6 @@ public interface IApplicationDbContext
     DbSet<BudgetItem> BudgetItems { get; }
     DbSet<TransactionCategory> TransactionCategories { get; }
     DbSet<Transaction> Transactions { get; }
+    DbSet<BudgetHistory> BudgetHistories { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

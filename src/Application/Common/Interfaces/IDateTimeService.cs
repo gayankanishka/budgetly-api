@@ -19,4 +19,9 @@ public interface IDateTimeService
     ///     Last day of the current month.
     /// </summary>
     DateTimeOffset LastDayOfCurrentMonth { get; }
+    
+    /// <summary>
+    ///     One year ago from now.
+    /// </summary>
+    DateTimeOffset OneYearAgoFromNow { get; }
 }

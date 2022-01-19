@@ -22,4 +22,9 @@ public class DateTimeService : IDateTimeService
     /// </summary>
     public DateTimeOffset LastDayOfCurrentMonth => new DateTime(UtcNow.Year, UtcNow.Month,
         DateTime.DaysInMonth(UtcNow.Year, UtcNow.Month));
+
+    /// <summary>
+    ///     One year ago from now.
+    /// </summary>
+    public DateTimeOffset OneYearAgoFromNow => UtcNow.AddYears(-1);
 }

@@ -30,6 +30,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<BudgetItem> BudgetItems => Set<BudgetItem>();
     public DbSet<TransactionCategory> TransactionCategories => Set<TransactionCategory>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
+    public DbSet<BudgetHistory> BudgetHistories => Set<BudgetHistory>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
