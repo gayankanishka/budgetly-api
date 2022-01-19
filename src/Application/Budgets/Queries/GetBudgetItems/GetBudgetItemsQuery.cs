@@ -3,7 +3,7 @@ using Budgetly.Application.Parameters;
 using Budgetly.Domain.Dtos;
 using MediatR;
 
-namespace Budgetly.Application.Budgets.Queries.GetBudgets;
+namespace Budgetly.Application.Budgets.Queries.GetBudgetItems;
 
 public class GetBudgetItemsQuery : QueryParameters, IRequest<PagedResponse<BudgetItemDto>>
 {

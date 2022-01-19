@@ -3,7 +3,7 @@ using Budgetly.Application.Budgets.Commands.CreateBudgetItem;
 using Budgetly.Application.Budgets.Commands.DeleteBudgetItem;
 using Budgetly.Application.Budgets.Commands.UpdateBudgetItem;
 using Budgetly.Application.Budgets.Queries.GetBudgetHistory;
-using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Application.Budgets.Queries.GetBudgetItems;
 using Budgetly.Application.Budgets.Queries.GetCurrentBudgetStat;
 using Budgetly.Application.Common.Models;
 using Budgetly.Domain.Dtos;

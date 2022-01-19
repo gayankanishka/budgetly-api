@@ -1,4 +1,4 @@
-using Budgetly.Application.Budgets.Queries.GetBudgets;
+using Budgetly.Application.Budgets.Queries.GetBudgetItems;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
 

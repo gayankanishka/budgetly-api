@@ -8,14 +8,14 @@ using Budgetly.Domain.Dtos;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Budgetly.Application.Budgets.Queries.GetBudgets;
+namespace Budgetly.Application.Budgets.Queries.GetBudgetItems;
 
-public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
+public class GetBudgetItemsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
 {
     private readonly IBudgetItemRepository _repository;
     private readonly IMapper _mapper;
 
-    public GetBudgetsQueryHandler(IBudgetItemRepository repository, IMapper mapper)
+    public GetBudgetItemsQueryHandler(IBudgetItemRepository repository, IMapper mapper)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
