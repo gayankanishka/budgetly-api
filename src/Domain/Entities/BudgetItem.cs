@@ -1,6 +1,9 @@
+using Budgetly.Domain.Common;
+using Budgetly.Domain.Common.Interfaces;
+
 namespace Budgetly.Domain.Entities;
 
-public class BudgetItem : BaseEntity
+public class BudgetItem : BaseEntity, IHasDomainEvent
 {
     public double TargetExpense { get; set; }
     public double ActualExpense { get; set; }
@@ -8,4 +11,5 @@ public class BudgetItem : BaseEntity
     public int TransactionCategoryId { get; set; }
     public TransactionCategory TransactionCategory { get; set; }
     public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
+    public List<DomainEvent> DomainEvents { get; set; } = new();
 }

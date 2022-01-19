@@ -2,6 +2,7 @@ using AutoMapper;
 using Budgetly.Application.Common.Exceptions;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
+using Budgetly.Domain.Events;
 using MediatR;
 
 namespace Budgetly.Application.Budgets.Commands.CreateBudgetItem;
@@ -30,6 +31,8 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
         }
 
         var budgetItem = _mapper.Map<BudgetItem>(request);
+        
+        budgetItem.DomainEvents.Add(new BudgetItemCreatedEvent(budgetItem));
         await _repository.AddAsync(budgetItem, cancellationToken);
 
         return budgetItem.Id;

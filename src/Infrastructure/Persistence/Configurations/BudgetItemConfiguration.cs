@@ -8,6 +8,8 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
 {
     public void Configure(EntityTypeBuilder<BudgetItem> builder)
     {
+        builder.Ignore(e => e.DomainEvents);
+
         builder.HasData(
             new BudgetItem
             {

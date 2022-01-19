@@ -19,11 +19,7 @@ public class UpdateBudgetItemCommandValidator : AbstractValidator<UpdateBudgetIt
         RuleFor(x => x.Description)
             .MaximumLength(250)
             .WithMessage("Description must be less than 250 characters");
-
-        RuleFor(x => x.TransactionCategoryId)
-            .GreaterThanOrEqualTo(1)
-            .WithMessage("CategoryId must be a valid value");
-
+        
         RuleFor(x => x.TargetExpense)
             .GreaterThan(0)
             .WithMessage("TargetExpense is required and must be grater than or equal to 0");
