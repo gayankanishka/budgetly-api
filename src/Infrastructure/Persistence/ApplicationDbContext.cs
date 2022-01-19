@@ -72,6 +72,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             o.UserId == _currentUserService.UserId || o.IsPreset);
         modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
         modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<BudgetHistory>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
 
         base.OnModelCreating(modelBuilder);
     }
