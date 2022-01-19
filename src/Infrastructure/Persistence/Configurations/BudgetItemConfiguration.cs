@@ -13,9 +13,10 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
             {
                 Id = 1,
                 Name = "Food",
-                TransactionCategoryId = 2,
+                TransactionCategoryId = 1,
                 TargetExpense = 25000,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                ActualExpense = 23000
             },
             new BudgetItem
             {
@@ -24,7 +25,8 @@ public class BudgetItemConfiguration : IEntityTypeConfiguration<BudgetItem>
                 TransactionCategoryId = 3,
                 Description = "My car expense budget",
                 TargetExpense = 60000,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                ActualExpense = 135000
             });
     }
 }

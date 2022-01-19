@@ -42,7 +42,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Name = "Rent",
                 Amount = 30000,
                 DateTime = new DateTime(2022, 1, 8),
-                CategoryId = 1,
+                CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
             new Transaction
@@ -52,7 +52,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 23000,
                 DateTime = new DateTime(2022, 1, 19),
                 CategoryId = 2,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 1
             },
             new Transaction
             {
@@ -61,7 +62,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 45000,
                 DateTime = new DateTime(2020, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -70,7 +72,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 10000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -79,7 +82,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -88,7 +92,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -97,7 +102,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -106,7 +112,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -115,7 +122,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -124,7 +132,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -133,7 +142,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -142,7 +152,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -151,7 +162,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -160,7 +172,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -169,7 +182,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -178,7 +192,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -187,7 +202,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -196,7 +212,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -205,7 +222,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             },
             new Transaction
             {
@@ -214,7 +232,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Amount = 5000,
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = "auth0|61d9c13ff98384007046a028",
+                BudgetItemId = 2
             });
     }
 }
