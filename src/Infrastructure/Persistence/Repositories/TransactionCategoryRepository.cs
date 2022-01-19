@@ -1,3 +1,4 @@
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -7,15 +8,28 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal sealed class TransactionCategoryRepository : ITransactionCategoryRepository
 {
     private readonly IApplicationDbContext _context;
+    private IFilterStrategy _filterStrategy;
 
     public TransactionCategoryRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _filterStrategy = new GetTransactionCategoriesFilterStrategy();
+    }
+
+    public void SetFilterStrategy(IFilterStrategy filterStrategy)
+    {
+        _filterStrategy = filterStrategy ?? throw new ArgumentNullException(nameof(filterStrategy));
     }
 
     public IQueryable<TransactionCategory> GetAll()
     {
         return _context.TransactionCategories;
+    }
+
+    public IQueryable<TransactionCategory> GetAll(IFilter filter)
+    {
+        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<TransactionCategory>
+               ?? throw new InvalidOperationException();
     }
 
     public async Task<TransactionCategory?> GetByIdAsync(int id, CancellationToken cancellationToken)

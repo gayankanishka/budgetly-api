@@ -24,9 +24,10 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
     public async Task<PagedResponse<TransactionDto>> Handle(GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
-        return await _repository.GetAll()
+        _repository.SetFilterStrategy(new GetTransactionsFilterStrategy());
+        
+        return await _repository.GetAll(request)
             .Include(x => x.Category)
-            .ApplyFilters(request)
             .OrderByDescending(x => x.DateTime)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
             .AsNoTracking()

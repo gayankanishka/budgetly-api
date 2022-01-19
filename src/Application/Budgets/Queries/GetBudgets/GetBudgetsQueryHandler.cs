@@ -12,21 +12,22 @@ namespace Budgetly.Application.Budgets.Queries.GetBudgets;
 
 public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetItemsQuery, PagedResponse<BudgetItemDto>>
 {
-    private readonly IBudgetItemRepository _itemRepository;
+    private readonly IBudgetItemRepository _repository;
     private readonly IMapper _mapper;
 
-    public GetBudgetsQueryHandler(IBudgetItemRepository itemRepository, IMapper mapper)
+    public GetBudgetsQueryHandler(IBudgetItemRepository repository, IMapper mapper)
     {
-        _itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public async Task<PagedResponse<BudgetItemDto>> Handle(GetBudgetItemsQuery request,
         CancellationToken cancellationToken)
     {
-        return await _itemRepository.GetAll()
+        _repository.SetFilterStrategy(new GetBudgetItemsFilterStrategy());
+        
+        return await _repository.GetAll(request)
             .Include(x => x.TransactionCategory)
-            .ApplyFilters(request)
             .OrderByDescending(x => x.Name)
             .ProjectTo<BudgetItemDto>(_mapper.ConfigurationProvider)
             .AsNoTracking()

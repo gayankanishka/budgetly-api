@@ -1,3 +1,4 @@
+using Budgetly.Application.Common.Filters;
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -7,15 +8,28 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 internal sealed class BudgetItemItemRepository : IBudgetItemRepository
 {
     private readonly IApplicationDbContext _context;
+    private IFilterStrategy _filterStrategy;
 
     public BudgetItemItemRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _filterStrategy = new GetBudgetItemsFilterStrategy();
+    }
+
+    public void SetFilterStrategy(IFilterStrategy filterStrategy)
+    {
+        _filterStrategy = filterStrategy ?? throw new ArgumentNullException(nameof(filterStrategy));
     }
 
     public IQueryable<BudgetItem> GetAll()
     {
         return _context.BudgetItems;
+    }
+
+    public IQueryable<BudgetItem> GetAll(IFilter filter)
+    {
+        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<BudgetItem> 
+               ?? throw new InvalidOperationException();
     }
 
     public async Task<BudgetItem?> GetByIdAsync(int id, CancellationToken cancellationToken)
