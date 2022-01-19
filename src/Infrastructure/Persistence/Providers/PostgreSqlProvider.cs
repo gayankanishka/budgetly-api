@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Infrastructure.Persistence.Providers;
 
-public class PostgreProvider : IDatabaseProvider
+public class PostgreSqlProvider : IDatabaseProvider
 {
     public DbContextOptionsBuilder Build(DbContextOptionsBuilder dbContextOptions, PersistenceOptions persistenceOptions)
     {
@@ -13,7 +13,7 @@ public class PostgreProvider : IDatabaseProvider
         var assemblyName = typeof(ApplicationDbContext).Assembly.FullName;
 
         return dbContextOptions.UseNpgsql(
-            persistenceOptions.PostgreConnectionString,
+            persistenceOptions.PostgreSqlConnectionString,
             a => a.MigrationsAssembly(assemblyName));
     }
 }

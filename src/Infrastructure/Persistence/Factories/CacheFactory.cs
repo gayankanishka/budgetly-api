@@ -9,7 +9,7 @@ internal class CacheFactory : AbstractPersistenceFactory<ICacheProvider>
     // TODO: Ideally this will create a cache provider based on the configuration. This would be future work.
     public override ICacheProvider GetProvider(PersistenceOptions persistenceOptions)
     {
-        var provider = persistenceOptions.CurrentCacheProviderType;
+        var provider = persistenceOptions.CurrentCacheProvider;
         
         if (provider == CacheProviderTypes.InMemory)
         {

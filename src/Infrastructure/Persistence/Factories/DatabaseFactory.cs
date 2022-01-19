@@ -8,16 +8,16 @@ internal class DatabaseFactory : AbstractPersistenceFactory<IDatabaseProvider>
 { 
     public override IDatabaseProvider GetProvider(PersistenceOptions persistenceOptions)
     {
-        var provider = persistenceOptions.CurrentDatabaseProviderType;
+        var provider = persistenceOptions.CurrentDatabaseProvider;
 
         if (provider == DataBaseProviderTypes.InMemory)
         {
             return new InMemoryDatabaseProvider();
         }
 
-        if (provider == DataBaseProviderTypes.Postgre)
+        if (provider == DataBaseProviderTypes.PostgreSql)
         {
-            return new PostgreProvider();
+            return new PostgreSqlProvider();
         }
 
         if (provider == DataBaseProviderTypes.SqlServer)
