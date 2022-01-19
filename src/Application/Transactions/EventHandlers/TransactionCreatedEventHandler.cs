@@ -1,5 +1,6 @@
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Models;
+using Budgetly.Domain.Enums;
 using Budgetly.Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNo
     {
         var domainEvent = notification.DomainEvent;
         var transaction = domainEvent.Transaction;
+
+        if (transaction.Type == TransactionTypes.Income)
+        {
+            return;
+        }
 
         var budgetItem = await _repository.GetAll()
             .Include(x => x.Transactions)

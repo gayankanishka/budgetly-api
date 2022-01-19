@@ -1,5 +1,6 @@
 using Budgetly.Application.Common.Interfaces;
 using Budgetly.Application.Common.Models;
+using Budgetly.Domain.Enums;
 using Budgetly.Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ public class BudgetItemCreatedEventHandler : INotificationHandler<DomainEventNot
             .Where(x => x.DateTime >= _dateTimeService.FirstDayOfCurrentMonth
                         && x.DateTime <= _dateTimeService.LastDayOfCurrentMonth)
             .Where(x => x.CategoryId == budgetItem.TransactionCategoryId)
+            .Where(x => x.Type == TransactionTypes.Expense)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
         

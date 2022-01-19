@@ -37,7 +37,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
             {
                 Id = 4,
                 Name = "Utilities",
-                Description = "Utilities",
+                Description = "Utility bills.",
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             },
@@ -45,7 +45,15 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
             {
                 Id = 5,
                 Name = "Health",
-                Description = "Health",
+                Description = "Health costs.",
+                IsPreset = true,
+                UserId = "auth0|61d9c13ff98384007046a028"
+            },
+            new TransactionCategory
+            {
+                Id = 6,
+                Name = "Salary",
+                Description = "Monthly salary from the job.",
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
             }
