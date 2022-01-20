@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Budgetly.Infrastructure.Persistence.Repositories;
 
-internal sealed class BudgetItemItemRepository : IBudgetItemRepository
+internal sealed class BudgetRepository : IBudgetRepository
 {
     private readonly IApplicationDbContext _context;
     private IFilterStrategy _filterStrategy;
 
-    public BudgetItemItemRepository(IApplicationDbContext context)
+    public BudgetRepository(IApplicationDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
-        _filterStrategy = new GetBudgetItemsFilterStrategy();
+        _filterStrategy = new GetBudgetsFilterStrategy();
     }
 
     public void SetFilterStrategy(IFilterStrategy filterStrategy)
@@ -21,38 +21,38 @@ internal sealed class BudgetItemItemRepository : IBudgetItemRepository
         _filterStrategy = filterStrategy ?? throw new ArgumentNullException(nameof(filterStrategy));
     }
 
-    public IQueryable<BudgetItem> GetAll()
+    public IQueryable<Budget> GetAll()
     {
-        return _context.BudgetItems;
+        return _context.Budgets;
     }
 
-    public IQueryable<BudgetItem> GetAll(IFilter filter)
+    public IQueryable<Budget> GetAll(IFilter filter)
     {
-        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<BudgetItem> 
+        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<Budget> 
                ?? throw new InvalidOperationException();
     }
 
-    public async Task<BudgetItem?> GetByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<Budget?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return await _context.BudgetItems
+        return await _context.Budgets
             .FindAsync(new object?[] { id }, cancellationToken);
     }
 
-    public async Task AddAsync(BudgetItem entity, CancellationToken cancellationToken)
+    public async Task AddAsync(Budget entity, CancellationToken cancellationToken)
     {
-        await _context.BudgetItems.AddAsync(entity, cancellationToken);
+        await _context.Budgets.AddAsync(entity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task UpdateAsync(BudgetItem entity, CancellationToken cancellationToken)
+    public async Task UpdateAsync(Budget entity, CancellationToken cancellationToken)
     {
-        _context.BudgetItems.Update(entity);
+        _context.Budgets.Update(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAsync(BudgetItem entity, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Budget entity, CancellationToken cancellationToken)
     {
-        _context.BudgetItems.Remove(entity);
+        _context.Budgets.Remove(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
 

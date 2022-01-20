@@ -42,12 +42,10 @@ public static class DependencyInjection
         services.AddScoped<IDomainEventService, DomainEventService>();
         services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
         services.AddScoped<ITransactionRepository, TransactionRepository>();
-        services.AddScoped<IBudgetItemRepository, BudgetItemItemRepository>();
+        services.AddScoped<IBudgetRepository, BudgetRepository>();
         services.AddScoped<IBudgetHistoryRepository, BudgetHistoryRepository>();
 
         services.AddTransient<IDateTimeService, DateTimeService>();
-
-        services.SeedDatabase();
         
         var auth0Options = configuration.GetSection(Auth0Options.Auth0)
             .Get<Auth0Options>();
@@ -68,6 +66,8 @@ public static class DependencyInjection
             o.AddPolicy("read:transactions", p =>
                 p.RequireAuthenticatedUser().RequireClaim("scope", "read:transactions"));
         });
+        
+        services.SeedDatabase();
 
         return services;
     }

@@ -5,20 +5,20 @@ using Budgetly.Domain.Entities;
 using Budgetly.Domain.Events;
 using MediatR;
 
-namespace Budgetly.Application.Budgets.Commands.CreateBudgetItem;
+namespace Budgetly.Application.Budgets.Commands.CreateBudget;
 
-public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCommand, int>
+public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, int>
 {
     private readonly IMapper _mapper;
-    private readonly IBudgetItemRepository _repository;
+    private readonly IBudgetRepository _repository;
 
-    public CreateBudgetItemCommandHandler(IMapper mapper, IBudgetItemRepository repository)
+    public CreateBudgetCommandHandler(IMapper mapper, IBudgetRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<int> Handle(CreateBudgetItemCommand request,
+    public async Task<int> Handle(CreateBudgetCommand request,
         CancellationToken cancellationToken)
     {
         var exists =
@@ -30,11 +30,11 @@ public class CreateBudgetItemCommandHandler : IRequestHandler<CreateBudgetItemCo
                 $"Budget item already exists with the selected transaction category.");
         }
         
-        var budgetItem = _mapper.Map<BudgetItem>(request);
+        var budget = _mapper.Map<Budget>(request);
         
-        budgetItem.DomainEvents.Add(new BudgetItemCreatedEvent(budgetItem));
-        await _repository.AddAsync(budgetItem, cancellationToken);
+        budget.DomainEvents.Add(new BudgetCreatedEvent(budget));
+        await _repository.AddAsync(budget, cancellationToken);
 
-        return budgetItem.Id;
+        return budget.Id;
     }
 }

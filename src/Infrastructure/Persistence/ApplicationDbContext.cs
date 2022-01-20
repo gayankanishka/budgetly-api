@@ -27,7 +27,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         _domainEventService = domainEventService ?? throw new ArgumentNullException(nameof(domainEventService));
     }
 
-    public DbSet<BudgetItem> BudgetItems => Set<BudgetItem>();
+    public DbSet<Budget> Budgets => Set<Budget>();
     public DbSet<TransactionCategory> TransactionCategories => Set<TransactionCategory>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<BudgetHistory> BudgetHistories => Set<BudgetHistory>();
@@ -71,7 +71,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         modelBuilder.Entity<TransactionCategory>().HasQueryFilter(o =>
             o.UserId == _currentUserService.UserId || o.IsPreset);
         modelBuilder.Entity<Transaction>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
-        modelBuilder.Entity<BudgetItem>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
+        modelBuilder.Entity<Budget>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
         modelBuilder.Entity<BudgetHistory>().HasQueryFilter(o => o.UserId == _currentUserService.UserId);
 
         base.OnModelCreating(modelBuilder);

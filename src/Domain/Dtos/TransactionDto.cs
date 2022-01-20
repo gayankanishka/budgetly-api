@@ -11,6 +11,6 @@ public class TransactionDto
     public TransactionTypes Type { get; set; }
     public DateTimeOffset DateTime { get; set; }
     public string? Note { get; set; }
-    public TransactionCategoryDto Category { get; set; }
+    public TransactionCategoryDto? Category { get; set; }
     public bool IsRecurring { get; set; }
 }

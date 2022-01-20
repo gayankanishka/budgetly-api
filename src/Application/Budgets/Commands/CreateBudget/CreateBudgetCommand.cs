@@ -1,8 +1,8 @@
 using MediatR;
 
-namespace Budgetly.Application.Budgets.Commands.CreateBudgetItem;
+namespace Budgetly.Application.Budgets.Commands.CreateBudget;
 
-public class CreateBudgetItemCommand : IRequest<int>
+public class CreateBudgetCommand : IRequest<int>
 {
     public string Name { get; set; }
     public string? Description { get; set; }

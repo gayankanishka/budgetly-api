@@ -56,7 +56,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 19),
                 CategoryId = 2,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 1,
+                BudgetId = 1,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -67,7 +67,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2020, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -78,7 +78,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -89,7 +89,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -100,7 +100,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -111,7 +111,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -122,7 +122,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -133,7 +133,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -144,7 +144,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -155,7 +155,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -166,7 +166,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -177,7 +177,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -188,7 +188,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -199,7 +199,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -210,7 +210,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -221,7 +221,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -232,7 +232,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -243,7 +243,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -254,7 +254,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 DateTime = new DateTime(2022, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetItemId = 2,
+                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction

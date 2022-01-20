@@ -4,26 +4,26 @@ using Budgetly.Application.Common.Interfaces;
 using Budgetly.Domain.Entities;
 using MediatR;
 
-namespace Budgetly.Application.Budgets.Commands.UpdateBudgetItem;
+namespace Budgetly.Application.Budgets.Commands.UpdateBudget;
 
-public class UpdateBudgetItemCommandHandler : IRequestHandler<UpdateBudgetItemCommand>
+public class UpdateBudgetCommandHandler : IRequestHandler<UpdateBudgetCommand>
 {
     private readonly IMapper _mapper;
-    private readonly IBudgetItemRepository _repository;
+    private readonly IBudgetRepository _repository;
 
-    public UpdateBudgetItemCommandHandler(IMapper mapper, IBudgetItemRepository repository)
+    public UpdateBudgetCommandHandler(IMapper mapper, IBudgetRepository repository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<Unit> Handle(UpdateBudgetItemCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(UpdateBudgetCommand request, CancellationToken cancellationToken)
     {
         var budget = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
         if (budget == null)
         {
-            throw new NotFoundException(nameof(BudgetItem), request.Id);
+            throw new NotFoundException(nameof(Budget), request.Id);
         }
 
         budget.Name = request.Name;

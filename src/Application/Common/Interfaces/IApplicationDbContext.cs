@@ -5,7 +5,7 @@ namespace Budgetly.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<BudgetItem> BudgetItems { get; }
+    DbSet<Budget> Budgets { get; }
     DbSet<TransactionCategory> TransactionCategories { get; }
     DbSet<Transaction> Transactions { get; }
     DbSet<BudgetHistory> BudgetHistories { get; }

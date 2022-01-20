@@ -11,10 +11,10 @@ namespace Budgetly.Application.Transactions.EventHandlers;
 public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNotification<TransactionCreatedEvent>>
 {
     private readonly ILogger<TransactionCreatedEventHandler> _logger;
-    private readonly IBudgetItemRepository _repository;
+    private readonly IBudgetRepository _repository;
 
     public TransactionCreatedEventHandler(ILogger<TransactionCreatedEventHandler> logger,
-        IBudgetItemRepository repository)
+        IBudgetRepository repository)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -31,22 +31,22 @@ public class TransactionCreatedEventHandler : INotificationHandler<DomainEventNo
             return;
         }
 
-        var budgetItem = await _repository.GetAll()
+        var budget = await _repository.GetAll()
             .Include(x => x.Transactions)
             .Where(x => x.TransactionCategoryId == transaction.CategoryId)
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (budgetItem == null)
+        if (budget == null)
         {
             return;
         }
 
-        budgetItem.Transactions.Add(transaction);
-        budgetItem.ActualExpense = budgetItem.Transactions.Sum(x => x.Amount);
+        budget.Transactions.Add(transaction);
+        budget.ActualExpense = budget.Transactions.Sum(x => x.Amount);
 
-        await _repository.UpdateAsync(budgetItem, cancellationToken);
+        await _repository.UpdateAsync(budget, cancellationToken);
 
-        _logger.LogInformation("----- Budgetly API Domain Event: {DomainEvent} updated budget item" +
-                               " {BudgetItemId}", domainEvent.GetType().Name, budgetItem.Id);
+        _logger.LogInformation("----- Budgetly API Domain Event: {DomainEvent} updated budget " +
+                               " {BudgetId}", domainEvent.GetType().Name, budget.Id);
     }
 }
