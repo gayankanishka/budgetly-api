@@ -1,6 +1,6 @@
 using Budgetly.Application.Common.Interfaces;
 
-namespace Budgetly.Infrastructure.Service;
+namespace Budgetly.Infrastructure.Services;
 
 /// <summary>
 ///     Provides the datetime required by the application.

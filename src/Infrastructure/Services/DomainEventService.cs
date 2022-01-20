@@ -4,7 +4,7 @@ using Budgetly.Domain.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Budgetly.Infrastructure.Service;
+namespace Budgetly.Infrastructure.Services;
 
 public class DomainEventService : IDomainEventService
 {

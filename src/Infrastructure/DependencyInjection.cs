@@ -6,7 +6,7 @@ using Budgetly.Infrastructure.Persistence.Imports;
 using Budgetly.Infrastructure.Persistence.Options;
 using Budgetly.Infrastructure.Persistence.Providers;
 using Budgetly.Infrastructure.Persistence.Repositories;
-using Budgetly.Infrastructure.Service;
+using Budgetly.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
