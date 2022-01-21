@@ -56,6 +56,14 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Description = "Monthly salary from the job.",
                 IsPreset = true,
                 UserId = "auth0|61d9c13ff98384007046a028"
+            },
+            new TransactionCategory
+            {
+                Id = 7,
+                Name = "Other",
+                Description = "All other transactions.",
+                IsPreset = true,
+                UserId = "auth0|61d9c13ff98384007046a028"
             }
         );
     }
