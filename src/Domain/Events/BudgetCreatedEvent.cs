@@ -7,7 +7,7 @@ public class BudgetCreatedEvent : DomainEvent
 {
     public BudgetCreatedEvent(Budget budget)
     {
-        budget = budget;
+        Budget = budget;
     }
 
     public Budget Budget { get; }
