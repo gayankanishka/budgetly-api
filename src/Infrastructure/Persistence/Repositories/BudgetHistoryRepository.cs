@@ -6,14 +6,14 @@ namespace Budgetly.Infrastructure.Persistence.Repositories;
 
 public class BudgetHistoryRepository : IBudgetHistoryRepository
 {
-    private readonly IDateTimeService _dateTimeService;
     private readonly IApplicationDbContext _context;
+    private readonly IDateTimeService _dateTimeService;
 
 
-    public BudgetHistoryRepository(IDateTimeService dateTimeService, IApplicationDbContext context)
+    public BudgetHistoryRepository(IApplicationDbContext context, IDateTimeService dateTimeService)
     {
-        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
     public IQueryable<BudgetHistory> GetAll()

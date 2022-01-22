@@ -10,21 +10,21 @@ namespace Budgetly.Application.Budgets.EventHandlers;
 
 public class BudgetCreatedEventHandler : INotificationHandler<DomainEventNotification<BudgetCreatedEvent>>
 {
-    private readonly ILogger<BudgetCreatedEventHandler> _logger;
     private readonly IBudgetRepository _budgetRepository;
-    private readonly ITransactionRepository _transactionRepository;
     private readonly IDateTimeService _dateTimeService;
+    private readonly ILogger<BudgetCreatedEventHandler> _logger;
+    private readonly ITransactionRepository _transactionRepository;
 
-    public BudgetCreatedEventHandler(ILogger<BudgetCreatedEventHandler> logger,
-        IBudgetRepository budgetRepository,
-        ITransactionRepository transactionRepository,
-        IDateTimeService dateTimeService)
+    public BudgetCreatedEventHandler(IBudgetRepository budgetRepository,
+        IDateTimeService dateTimeService,
+        ILogger<BudgetCreatedEventHandler> logger,
+        ITransactionRepository transactionRepository)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _budgetRepository = budgetRepository ?? throw new ArgumentNullException(nameof(budgetRepository));
+        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _transactionRepository =
             transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
-        _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
     public async Task Handle(DomainEventNotification<BudgetCreatedEvent> notification,

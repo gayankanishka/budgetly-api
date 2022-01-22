@@ -9,13 +9,13 @@ namespace Budgetly.Application.Budgets.Queries.GetBudgetHistory;
 
 public class GetBudgetHistoryQueryHandler : IRequestHandler<GetBudgetHistoryQuery, IEnumerable<BudgetHistoryDto>>
 {
-    private readonly IBudgetHistoryRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IBudgetHistoryRepository _repository;
 
-    public GetBudgetHistoryQueryHandler(IBudgetHistoryRepository repository, IMapper mapper)
+    public GetBudgetHistoryQueryHandler(IMapper mapper, IBudgetHistoryRepository repository)
     {
-        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public async Task<IEnumerable<BudgetHistoryDto>> Handle(GetBudgetHistoryQuery request,

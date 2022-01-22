@@ -27,7 +27,7 @@ public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, i
         if (exists)
         {
             throw new AlreadyExistsException(
-                $"Budget item already exists with the selected transaction category.");
+                "Budget item already exists with the selected transaction category.");
         }
 
         var budget = _mapper.Map<Budget>(request);

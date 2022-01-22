@@ -9,7 +9,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
     public void Configure(EntityTypeBuilder<BudgetHistory> builder)
     {
         builder.HasData(
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 1,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -18,7 +18,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 100000,
                 Date = new DateTime(2021, 1, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 2,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -27,7 +27,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 100000,
                 Date = new DateTime(2021, 2, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -36,7 +36,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 110000,
                 Date = new DateTime(2021, 3, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 4,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -45,7 +45,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 250000,
                 Date = new DateTime(2021, 4, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 5,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -54,7 +54,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 280000,
                 Date = new DateTime(2021, 5, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 6,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -63,7 +63,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 290000,
                 Date = new DateTime(2021, 6, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 7,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -72,7 +72,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 250000,
                 Date = new DateTime(2021, 7, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 8,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -81,7 +81,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 250000,
                 Date = new DateTime(2021, 8, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 9,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -90,7 +90,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 200000,
                 Date = new DateTime(2021, 9, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 10,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -99,7 +99,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 340000,
                 Date = new DateTime(2021, 10, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 11,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -108,7 +108,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualIncome = 200000,
                 Date = new DateTime(2021, 11, 1)
             },
-            new BudgetHistory()
+            new BudgetHistory
             {
                 Id = 12,
                 UserId = "auth0|61d9c13ff98384007046a028",
