@@ -22,11 +22,13 @@ public class BudgetCreatedEventHandler : INotificationHandler<DomainEventNotific
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _budgetRepository = budgetRepository ?? throw new ArgumentNullException(nameof(budgetRepository));
-        _transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
+        _transactionRepository =
+            transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
         _dateTimeService = dateTimeService ?? throw new ArgumentNullException(nameof(dateTimeService));
     }
 
-    public async Task Handle(DomainEventNotification<BudgetCreatedEvent> notification, CancellationToken cancellationToken)
+    public async Task Handle(DomainEventNotification<BudgetCreatedEvent> notification,
+        CancellationToken cancellationToken)
     {
         var domainEvent = notification.DomainEvent;
         var budget = domainEvent.Budget;
@@ -39,13 +41,14 @@ public class BudgetCreatedEventHandler : INotificationHandler<DomainEventNotific
             .Where(x => x.Type == TransactionTypes.Expense)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
-        
+
         budget.Transactions = transactions;
         budget.ActualExpense = transactions.Sum(x => x.Amount);
 
         await _budgetRepository.UpdateAsync(budget, cancellationToken);
 
-        _logger.LogInformation("----- Budgetly API Domain Event: {DomainEvent} associated the relevant transactions by category.",
+        _logger.LogInformation(
+            "----- Budgetly API Domain Event: {DomainEvent} associated the relevant transactions by category.",
             domainEvent.GetType().Name);
     }
 }

@@ -29,9 +29,9 @@ public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, i
             throw new AlreadyExistsException(
                 $"Budget item already exists with the selected transaction category.");
         }
-        
+
         var budget = _mapper.Map<Budget>(request);
-        
+
         budget.DomainEvents.Add(new BudgetCreatedEvent(budget));
         await _repository.AddAsync(budget, cancellationToken);
 

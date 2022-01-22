@@ -25,7 +25,7 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
         CancellationToken cancellationToken)
     {
         _repository.SetFilterStrategy(new GetTransactionsFilterStrategy());
-        
+
         return await _repository.GetAll(request)
             .Include(x => x.Category)
             .OrderByDescending(x => x.DateTime)

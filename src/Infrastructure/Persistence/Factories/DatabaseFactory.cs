@@ -5,7 +5,7 @@ using Budgetly.Infrastructure.Persistence.Providers;
 namespace Budgetly.Infrastructure.Persistence.Factories;
 
 internal class DatabaseFactory : AbstractPersistenceFactory<IDatabaseProvider>
-{ 
+{
     public override IDatabaseProvider GetProvider(PersistenceOptions persistenceOptions)
     {
         var provider = persistenceOptions.CurrentDatabaseProvider;

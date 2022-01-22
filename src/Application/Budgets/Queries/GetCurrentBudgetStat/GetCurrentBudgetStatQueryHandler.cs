@@ -33,7 +33,7 @@ public class GetCurrentBudgetStatQueryHandler : IRequestHandler<GetCurrentBudget
         {
             TargetExpense = targetExpense,
             ActualExpense = actualExpense,
-            AvailableToSpend = actualIncome - actualExpense // TODO: GW | Validate this
+            AvailableToSpend = actualIncome - actualExpense
         };
     }
 }

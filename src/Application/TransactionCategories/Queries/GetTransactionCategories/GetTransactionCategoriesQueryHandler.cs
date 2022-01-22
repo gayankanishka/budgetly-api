@@ -26,7 +26,7 @@ public class GetTransactionCategoriesQueryHandler : IRequestHandler<GetTransacti
         CancellationToken cancellationToken)
     {
         _repository.SetFilterStrategy(new GetTransactionCategoriesFilterStrategy());
-        
+
         return await _repository.GetAll(request)
             .OrderBy(x => x.Name)
             .ProjectTo<TransactionCategoryDto>(_mapper.ConfigurationProvider)

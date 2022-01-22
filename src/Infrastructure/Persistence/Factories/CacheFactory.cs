@@ -10,7 +10,7 @@ internal class CacheFactory : AbstractPersistenceFactory<ICacheProvider>
     public override ICacheProvider GetProvider(PersistenceOptions persistenceOptions)
     {
         var provider = persistenceOptions.CurrentCacheProvider;
-        
+
         if (provider == CacheProviderTypes.InMemory)
         {
             throw new NotImplementedException();

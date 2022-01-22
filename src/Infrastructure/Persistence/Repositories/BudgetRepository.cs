@@ -28,7 +28,7 @@ internal sealed class BudgetRepository : IBudgetRepository
 
     public IQueryable<Budget> GetAll(IFilter filter)
     {
-        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<Budget> 
+        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<Budget>
                ?? throw new InvalidOperationException();
     }
 

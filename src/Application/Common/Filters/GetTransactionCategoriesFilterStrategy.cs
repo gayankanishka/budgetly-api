@@ -15,16 +15,16 @@ public class GetTransactionCategoriesFilterStrategy : IFilterStrategy
         {
             return query;
         }
-        
+
         if (!string.IsNullOrWhiteSpace(transactionCategoriesFilters?.Name))
         {
-            transactionCategoriesQuery = transactionCategoriesQuery?.Where(x => 
+            transactionCategoriesQuery = transactionCategoriesQuery?.Where(x =>
                 x.Name.Contains(transactionCategoriesFilters.Name.Trim(), StringComparison.CurrentCultureIgnoreCase));
         }
-        
+
         if (transactionCategoriesFilters?.Preset != null)
         {
-            transactionCategoriesQuery = transactionCategoriesQuery?.Where(x => 
+            transactionCategoriesQuery = transactionCategoriesQuery?.Where(x =>
                 x.IsPreset == transactionCategoriesFilters.Preset);
         }
 

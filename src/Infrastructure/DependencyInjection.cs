@@ -31,12 +31,12 @@ public static class DependencyInjection
         var databaseOptions = configuration.GetSection(PersistenceOptions.Persistence)
             .Get<PersistenceOptions>();
 
-        services.AddDbContext<ApplicationDbContext>(options => 
-           AbstractPersistenceFactory<IDatabaseProvider>
-               .CreateFactory()
-               .GetProvider(databaseOptions)
-               .Build(options, databaseOptions));
-        
+        services.AddDbContext<ApplicationDbContext>(options =>
+            AbstractPersistenceFactory<IDatabaseProvider>
+                .CreateFactory()
+                .GetProvider(databaseOptions)
+                .Build(options, databaseOptions));
+
         services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>()
                                                               ?? throw new InvalidOperationException());
         services.AddScoped<IDomainEventService, DomainEventService>();
@@ -46,10 +46,10 @@ public static class DependencyInjection
         services.AddScoped<IBudgetHistoryRepository, BudgetHistoryRepository>();
 
         services.AddTransient<IDateTimeService, DateTimeService>();
-        
+
         var auth0Options = configuration.GetSection(Auth0Options.Auth0)
             .Get<Auth0Options>();
-        
+
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, c =>
             {
@@ -66,7 +66,7 @@ public static class DependencyInjection
             o.AddPolicy("read:transactions", p =>
                 p.RequireAuthenticatedUser().RequireClaim("scope", "read:transactions"));
         });
-        
+
         services.SeedDatabase();
 
         return services;

@@ -20,13 +20,13 @@ public class GetTransactionsFilterStrategy : IFilterStrategy
 
         transactionFilters.EndDate ??= new DateTime(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month,
             DateTime.DaysInMonth(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month));
-        
+
         if (!string.IsNullOrWhiteSpace(transactionFilters?.Name))
         {
             transactionQuery = transactionQuery?.Where(x => x.Name.Contains(transactionFilters.Name.Trim(),
                 StringComparison.CurrentCultureIgnoreCase));
         }
-        
+
         if (transactionFilters?.Recurring != null)
         {
             transactionQuery = transactionQuery?.Where(x => x.IsRecurring == transactionFilters.Recurring);
@@ -42,7 +42,7 @@ public class GetTransactionsFilterStrategy : IFilterStrategy
             transactionQuery = transactionQuery?.Where(x => x.CategoryId == transactionFilters.CategoryId);
         }
 
-        transactionQuery = transactionQuery?.Where(x => 
+        transactionQuery = transactionQuery?.Where(x =>
             x.DateTime >= transactionFilters.StartDate && x.DateTime <= transactionFilters.EndDate);
 
         return transactionQuery;

@@ -25,7 +25,7 @@ public class TransactionUpdatedEventHandler : INotificationHandler<DomainEventNo
     {
         var domainEvent = notification.DomainEvent;
         var transaction = domainEvent.Transaction;
-        
+
         if (transaction.Type == TransactionTypes.Income)
         {
             return;

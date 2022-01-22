@@ -25,7 +25,7 @@ public class GetBudgetsQueryHandler : IRequestHandler<GetBudgetsQuery, PagedResp
         CancellationToken cancellationToken)
     {
         _repository.SetFilterStrategy(new GetBudgetsFilterStrategy());
-        
+
         return await _repository.GetAll(request)
             .Include(x => x.TransactionCategory)
             .OrderByDescending(x => x.Name)

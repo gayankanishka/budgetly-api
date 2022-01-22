@@ -5,7 +5,8 @@ namespace Budgetly.Infrastructure.Persistence.Providers;
 
 public class InMemoryDatabaseProvider : IDatabaseProvider
 {
-    public DbContextOptionsBuilder Build(DbContextOptionsBuilder contextOptionsBuilder, PersistenceOptions persistenceOptions)
+    public DbContextOptionsBuilder Build(DbContextOptionsBuilder contextOptionsBuilder,
+        PersistenceOptions persistenceOptions)
     {
         return contextOptionsBuilder.UseInMemoryDatabase(persistenceOptions.InMemoryConnectionString);
     }

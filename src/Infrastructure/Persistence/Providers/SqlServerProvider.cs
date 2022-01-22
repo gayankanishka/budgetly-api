@@ -5,7 +5,8 @@ namespace Budgetly.Infrastructure.Persistence.Providers;
 
 public class SqlServerProvider : IDatabaseProvider
 {
-    public DbContextOptionsBuilder Build(DbContextOptionsBuilder dbContextOptions, PersistenceOptions persistenceOptions)
+    public DbContextOptionsBuilder Build(DbContextOptionsBuilder dbContextOptions,
+        PersistenceOptions persistenceOptions)
     {
         var assemblyName = typeof(ApplicationDbContext).Assembly.FullName;
 

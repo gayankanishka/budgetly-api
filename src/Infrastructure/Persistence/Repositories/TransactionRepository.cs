@@ -16,7 +16,7 @@ internal sealed class TransactionRepository : ITransactionRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _filterStrategy = new GetTransactionsFilterStrategy();
     }
-    
+
     public void SetFilterStrategy(IFilterStrategy filterStrategy)
     {
         _filterStrategy = filterStrategy ?? throw new ArgumentNullException(nameof(filterStrategy));
@@ -26,10 +26,10 @@ internal sealed class TransactionRepository : ITransactionRepository
     {
         return _context.Transactions;
     }
-    
+
     public IQueryable<Transaction> GetAll(IFilter filter)
-    { 
-        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<Transaction> 
+    {
+        return _filterStrategy.Filter(GetAll(), filter) as IQueryable<Transaction>
                ?? throw new InvalidOperationException();
     }
 

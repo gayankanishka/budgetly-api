@@ -7,7 +7,7 @@ namespace Budgetly.Infrastructure.Persistence.Factories;
 internal abstract class AbstractPersistenceFactory<T>
 {
     public abstract T GetProvider(PersistenceOptions persistenceOptions);
-    
+
     public static AbstractPersistenceFactory<T> CreateFactory()
     {
         if (typeof(T) == typeof(IDatabaseProvider))
