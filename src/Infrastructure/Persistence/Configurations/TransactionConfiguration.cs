@@ -267,6 +267,72 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 UserId = "auth0|61d9c13ff98384007046a028",
                 Type = TransactionTypes.Income,
                 IsRecurring = true
+            },
+            new Transaction
+            {
+                Id = 24,
+                Name = "Groceries",
+                Amount = 5000,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
+            },
+            new Transaction
+            {
+                Id = 25,
+                Name = "Cookware",
+                Amount = 2000,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
+            },
+            new Transaction
+            {
+                Id = 26,
+                Name = "Clothes",
+                Amount = 7000,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
+            },
+            new Transaction
+            {
+                Id = 27,
+                Name = "Bread",
+                Amount = 500,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
+            },
+            new Transaction
+            {
+                Id = 28,
+                Name = "Groceries",
+                Amount = 1200,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
+            },
+            new Transaction
+            {
+                Id = 29,
+                Name = "Food",
+                Amount = 800,
+                DateTime = new DateTime(2022, 2, 21),
+                CategoryId = 8,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                BudgetId = 3,
+                Type = TransactionTypes.Expense
             });
     }
 }

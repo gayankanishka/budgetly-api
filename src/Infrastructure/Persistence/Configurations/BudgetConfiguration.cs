@@ -29,6 +29,15 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
                 TargetExpense = 60000,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 ActualExpense = 135000
+            },
+            new Budget
+            {
+                Id = 3,
+                Name = "Shopping Budget",
+                TransactionCategoryId = 1,
+                TargetExpense = 70000,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                ActualExpense = 50000
             });
     }
 }
