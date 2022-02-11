@@ -34,7 +34,7 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
             {
                 Id = 3,
                 Name = "Shopping Budget",
-                TransactionCategoryId = 1,
+                TransactionCategoryId = 8,
                 TargetExpense = 70000,
                 UserId = "auth0|61e10a1f7a958c0070a4c713",
                 ActualExpense = 50000
