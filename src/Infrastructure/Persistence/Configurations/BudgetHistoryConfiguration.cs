@@ -142,7 +142,7 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 TargetExpense = 120000,
                 ActualExpense = 180000,
                 ActualIncome = 220000,
-                Date = new DateTime(2021, 11, 1)
+                Date = new DateTime(2021, 12, 1)
             });
     }
 }

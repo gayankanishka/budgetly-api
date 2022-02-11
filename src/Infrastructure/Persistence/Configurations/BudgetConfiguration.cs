@@ -18,17 +18,17 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
                 TransactionCategoryId = 1,
                 TargetExpense = 25000,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                ActualExpense = 23000
+                ActualExpense = 4500
             },
             new Budget
             {
                 Id = 2,
-                Name = "car",
+                Name = "Car",
                 TransactionCategoryId = 3,
                 Description = "My car expense budget",
                 TargetExpense = 60000,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                ActualExpense = 135000
+                ActualExpense = 15000
             },
             new Budget
             {

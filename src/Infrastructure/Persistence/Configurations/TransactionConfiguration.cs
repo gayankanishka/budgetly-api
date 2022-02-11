@@ -21,12 +21,13 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 1,
-                Name = "Water bill",
-                Amount = 1500,
+                Name = "Monthly salary from Budgetly",
+                Amount = 320000,
                 DateTime = new DateTime(2022, 1, 1),
-                CategoryId = 4,
+                CategoryId = 6,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                Type = TransactionTypes.Expense
+                Type = TransactionTypes.Income,
+                IsRecurring = true
             },
             new Transaction
             {
@@ -62,8 +63,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 5,
-                Name = "Car payment",
-                Amount = 45000,
+                Name = "Car installment payment",
+                Amount = 50000,
                 DateTime = new DateTime(2020, 1, 21),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
@@ -84,9 +85,9 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 7,
-                Name = "Car gas",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
+                Name = "Car petrol",
+                Amount = 15000,
+                DateTime = new DateTime(2022, 1, 25),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 BudgetId = 2,
@@ -95,78 +96,72 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 8,
-                Name = "Car service",
+                Name = "Doctor appointment",
                 Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                DateTime = new DateTime(2022, 1, 28),
+                CategoryId = 5,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 9,
-                Name = "Car oil",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Medicine",
+                Amount = 2000,
+                DateTime = new DateTime(2022, 1, 28),
+                CategoryId = 5,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 10,
-                Name = "Car tires",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Monthly salary from Budgetly",
+                Amount = 320000,
+                DateTime = new DateTime(2022, 2, 1),
+                CategoryId = 6,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
-                Type = TransactionTypes.Expense
+                Type = TransactionTypes.Income,
+                IsRecurring = true
             },
             new Transaction
             {
                 Id = 11,
-                Name = "Car wash",
+                Name = "Daddy musical show tickets",
                 Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                DateTime = new DateTime(2022, 2, 1),
+                CategoryId = 2,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 12,
-                Name = "Car wax",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Water bill",
+                Amount = 2000,
+                DateTime = new DateTime(2022, 2, 2),
+                CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 13,
-                Name = "Car tire rotation",
+                Name = "Electricity bill",
                 Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                DateTime = new DateTime(2022, 2, 5),
+                CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 14,
-                Name = "Car engine check",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Phone bill",
+                Amount = 5200,
+                DateTime = new DateTime(2022, 2, 8),
+                CategoryId = 4,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
@@ -174,7 +169,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Id = 15,
                 Name = "Car tire check",
                 Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
+                DateTime = new DateTime(2022, 2, 15),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 BudgetId = 2,
@@ -185,7 +180,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
                 Id = 16,
                 Name = "Car oil change",
                 Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
+                DateTime = new DateTime(2022, 2, 16),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 BudgetId = 2,
@@ -194,9 +189,9 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 17,
-                Name = "Car tire rotation",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
+                Name = "Car engine check",
+                Amount = 3000,
+                DateTime = new DateTime(2022, 2, 16),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 BudgetId = 2,
@@ -205,31 +200,29 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 18,
-                Name = "Car engine check",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Cloth shopping",
+                Amount = 15000,
+                DateTime = new DateTime(2022, 2, 22),
+                CategoryId = 7,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 19,
-                Name = "Car tire check",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Shoe shopping",
+                Amount = 10000,
+                DateTime = new DateTime(2022, 2, 22),
+                CategoryId = 7,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 20,
-                Name = "Car oil change",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
+                Name = "Car wash",
+                Amount = 3000,
+                DateTime = new DateTime(2022, 2, 26),
                 CategoryId = 3,
                 UserId = "auth0|61d9c13ff98384007046a028",
                 BudgetId = 2,
@@ -238,35 +231,32 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             new Transaction
             {
                 Id = 21,
-                Name = "Car tire rotation",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "AWS fee",
+                Amount = 3000,
+                DateTime = new DateTime(2022, 2, 28),
+                CategoryId = 7,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 22,
-                Name = "Car engine check",
-                Amount = 5000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 3,
+                Name = "Azure fee",
+                Amount = 2000,
+                DateTime = new DateTime(2022, 2, 28),
+                CategoryId = 7,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                BudgetId = 2,
                 Type = TransactionTypes.Expense
             },
             new Transaction
             {
                 Id = 23,
-                Name = "Monthly salary from Budgetly",
-                Amount = 320000,
-                DateTime = new DateTime(2022, 1, 21),
-                CategoryId = 6,
+                Name = "Food",
+                Amount = 4500,
+                DateTime = new DateTime(2022, 2, 28),
+                CategoryId = 1,
                 UserId = "auth0|61d9c13ff98384007046a028",
-                Type = TransactionTypes.Income,
-                IsRecurring = true
+                Type = TransactionTypes.Expense
             },
             new Transaction
             {
