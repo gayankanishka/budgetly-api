@@ -64,6 +64,14 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Description = "All other transactions.",
                 IsPreset = true,
                 UserId = string.Empty
+            },
+            new TransactionCategory
+            {
+                Id = 8,
+                Name = "Shopping",
+                Description = "All Shopping related transactions.",
+                IsPreset = false,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
             }
         );
     }

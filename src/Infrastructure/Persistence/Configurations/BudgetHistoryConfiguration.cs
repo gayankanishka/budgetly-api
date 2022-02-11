@@ -116,6 +116,33 @@ public class BudgetHistoryConfiguration : IEntityTypeConfiguration<BudgetHistory
                 ActualExpense = 50000,
                 ActualIncome = 100000,
                 Date = new DateTime(2021, 12, 1)
+            },
+            new BudgetHistory
+            {
+                Id = 13,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                TargetExpense = 120000,
+                ActualExpense = 200000,
+                ActualIncome = 200000,
+                Date = new DateTime(2022, 02, 1)
+            },
+            new BudgetHistory
+            {
+                Id = 14,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                TargetExpense = 100000,
+                ActualExpense = 200000,
+                ActualIncome = 150000,
+                Date = new DateTime(2022, 01, 1)
+            },
+            new BudgetHistory
+            {
+                Id = 15,
+                UserId = "auth0|61e10a1f7a958c0070a4c713",
+                TargetExpense = 120000,
+                ActualExpense = 180000,
+                ActualIncome = 220000,
+                Date = new DateTime(2021, 12, 1)
             });
     }
 }
