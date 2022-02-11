@@ -15,16 +15,11 @@ public class GetTransactionsFilterStrategy : IFilterStrategy
         {
             return query;
         }
-
-        transactionFilters.StartDate ??= new DateTime(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month, 1);
-
-        transactionFilters.EndDate ??= new DateTime(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month,
-            DateTime.DaysInMonth(DateTimeOffset.UtcNow.Year, DateTimeOffset.UtcNow.Month));
-
+        
         if (!string.IsNullOrWhiteSpace(transactionFilters?.Name))
         {
-            transactionQuery = transactionQuery?.Where(x => x.Name.Contains(transactionFilters.Name.Trim(),
-                StringComparison.CurrentCultureIgnoreCase));
+            transactionQuery = transactionQuery?.Where(x =>
+                x.Name.ToLower().Contains(transactionFilters.Name.Trim().ToLower()));
         }
 
         if (transactionFilters?.Recurring != null)
@@ -42,9 +37,22 @@ public class GetTransactionsFilterStrategy : IFilterStrategy
             transactionQuery = transactionQuery?.Where(x => x.CategoryId == transactionFilters.CategoryId);
         }
 
-        transactionQuery = transactionQuery?.Where(x =>
-            x.DateTime >= transactionFilters.StartDate && x.DateTime <= transactionFilters.EndDate);
+        if (transactionFilters?.StartDate != null && transactionFilters?.EndDate != null)
+        {
+            return transactionQuery?.Where(x =>
+                x.DateTime >= transactionFilters.StartDate && x.DateTime <= transactionFilters.EndDate);
+        }
+        
+        if (transactionFilters?.StartDate != null && transactionFilters?.EndDate == null)
+        {
+            return transactionQuery?.Where(x => x.DateTime >= transactionFilters.StartDate);
+        }
 
+        if (transactionFilters?.StartDate == null && transactionFilters?.EndDate != null)
+        {
+            return transactionQuery?.Where(x => x.DateTime <= transactionFilters.EndDate);
+        }
+        
         return transactionQuery;
     }
 }

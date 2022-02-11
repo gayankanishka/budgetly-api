@@ -18,8 +18,8 @@ public class GetBudgetsFilterStrategy : IFilterStrategy
 
         if (!string.IsNullOrWhiteSpace(budgetsFilters?.Name))
         {
-            budgetsQuery = budgetsQuery.Where(x => x.Name.Contains(budgetsFilters.Name.Trim(),
-                StringComparison.CurrentCultureIgnoreCase));
+            budgetsQuery = budgetsQuery.Where(x => 
+                x.Name.ToLower().Contains(budgetsFilters.Name.Trim().ToLower()));
         }
 
         if (budgetsFilters?.TransactionCategoryId != null)

@@ -15,7 +15,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Food",
                 Description = "Food and Groceries",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -23,7 +23,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Entertainment",
                 Description = "Entertainment",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -31,7 +31,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Transportation",
                 Description = "Transportation",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -39,7 +39,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Utilities",
                 Description = "Utility bills.",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -47,7 +47,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Health",
                 Description = "Health costs.",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -55,7 +55,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Salary",
                 Description = "Monthly salary from the job.",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             },
             new TransactionCategory
             {
@@ -63,7 +63,7 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                 Name = "Other",
                 Description = "All other transactions.",
                 IsPreset = true,
-                UserId = "auth0|61d9c13ff98384007046a028"
+                UserId = string.Empty
             }
         );
     }

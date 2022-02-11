@@ -19,7 +19,7 @@ public class GetTransactionCategoriesFilterStrategy : IFilterStrategy
         if (!string.IsNullOrWhiteSpace(transactionCategoriesFilters?.Name))
         {
             transactionCategoriesQuery = transactionCategoriesQuery?.Where(x =>
-                x.Name.Contains(transactionCategoriesFilters.Name.Trim(), StringComparison.CurrentCultureIgnoreCase));
+                x.Name.ToLower().Contains(transactionCategoriesFilters.Name.Trim().ToLower()));
         }
 
         if (transactionCategoriesFilters?.Preset != null)
