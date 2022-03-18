@@ -8,7 +8,7 @@ Budgetly is a RESTful API to mange personal budget flow. This repository only co
 
 ## Dashboard
 
-![dashboard](https://github.com/gayankanishka/budgetly-api/blob/main/docs/dashboard.png?raw=true)
+![dashboard](https://github.com/gayankanishka/budgetly-api/blob/main/docs/dashboard-1.png?raw=true)
 
 ## High-level architecture diagram
 
